@@ -1,0 +1,163 @@
+@font-face {
+  font-family: MyFont;
+  src: url(../Font/InterBureauTitle-n7xV.otf);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: MyFont, sans-serif;
+}
+
+.portofio-section {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.bg-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.info-content {
+  max-width: 1073px;
+  height: 500px;
+  position: absolute;
+  margin: auto;
+  margin: auto;
+  margin: auto;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.48);
+  color: white;
+  padding: 44px 120px;
+}
+
+.avatar {
+  position: absolute;
+  top: -30%;
+  right: -13%;
+  transition: all 0.3s;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.name {
+  text-align: center;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 45px;
+  text-transform: uppercase;
+}
+
+.description {
+  position: relative;
+  text-align: justify;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1;
+  padding-bottom: 53px;
+}
+
+.description .text-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.description .letter {
+  display: inline-block;
+  line-height: 1;
+}
+
+.social-tilte {
+  text-align: center;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 46px;
+  text-transform: uppercase;
+}
+
+.social-group {
+  display: flex;
+  justify-content: center;
+}
+
+.social-link {
+  margin-right: 36px;
+}
+
+.social-img {
+  width: 80px;
+  transition: all 0.3s;
+}
+
+.social-img:hover {
+  transform: scale(1.2);
+}
+
+.animate__animated .animate__delay-6s {
+  animation-delay: 6s;
+}
+
+.animate__animated .animate__delay-7s {
+  animation-delay: 7s;
+}
+
+.animate__animated .animate__delay-8s {
+  animation-delay: 8s;
+}
+
+.animate__animated .animate__delay-9s {
+  animation-delay: 9s;
+}
+
+.animate__animated .animate__delay-10s {
+  animation-delay: 10s;
+}
+
+.audio {
+  position: absolute;
+  bottom: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: #fff 3px solid;
+  border-radius: 50px;
+  opacity: 0;
+}
+
+.audio::-webkit-media-controls-enclosure {
+  background-color: rgba(255, 213, 252, 0.911);
+}
+
+.audioBtn {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  transition: all 0.3s;
+}
+
+.audioBtn:hover {
+  transform: scale(1.1);
+}
+
+.audioBtn img {
+  width: 60px;
+}
