@@ -39,7 +39,7 @@
   bottom: 0;
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.48);
-  color: white;
+  color: #FFEFCF;
   padding: 44px 120px;
 }
 
@@ -48,10 +48,28 @@
   top: -30%;
   right: -13%;
   transition: all 0.3s;
+  width: 300px;
+  height: 300px;
+  border-radius: 232px;
+  mask-image: url(/Asset/Image/Avatar.gif);
+  
 }
 
 .avatar:hover {
   transform: scale(1.05);
+}
+
+.avatar-gif{
+  width: 100%;
+  border-radius: 232px;
+}
+
+.avatar-border{
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  border-radius: 232px;
+  border: #FD998F 3px solid;
 }
 
 .name {
@@ -67,7 +85,7 @@
 .description {
   position: relative;
   text-align: justify;
-  font-size: 24px;
+  font-size: 26px;
   font-style: normal;
   font-weight: 500;
   line-height: 1;
