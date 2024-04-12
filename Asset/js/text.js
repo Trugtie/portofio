@@ -8,9 +8,9 @@ textWrapper.innerHTML = textWrapper.textContent.replace(
 anime.timeline({ loop: false }).add({
   targets: ".description .letter",
   scale: [0, 1],
-  duration: 1500,
+  duration: 600,
   elasticity: 600,
-  delay: (el, i) => 150 * (i + 1),
+  delay: (el, i) => 60 * (i + 1),
 });
 
 const audio = document.querySelector(".audio");
