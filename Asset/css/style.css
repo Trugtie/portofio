@@ -39,7 +39,7 @@
   bottom: 0;
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.48);
-  color: #FFEFCF;
+  color: #ffefcf;
   padding: 44px 120px;
 }
 
@@ -51,25 +51,25 @@
   width: 300px;
   height: 300px;
   border-radius: 232px;
-  mask-image: url(/Asset/Image/Avatar.gif);
-  
+  mask-image: url(../Asset/Image/Avatar.gif);
+  -webkit-mask-image: url(../Asset/Image/Avatar.gif);
 }
 
 .avatar:hover {
   transform: scale(1.05);
 }
 
-.avatar-gif{
+.avatar-gif {
   width: 100%;
   border-radius: 232px;
 }
 
-.avatar-border{
+.avatar-border {
   position: absolute;
   height: 300px;
   width: 300px;
   border-radius: 232px;
-  border: #FD998F 3px solid;
+  border: #fd998f 3px solid;
 }
 
 .name {
