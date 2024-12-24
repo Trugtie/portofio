@@ -51,8 +51,8 @@
   width: 300px;
   height: 300px;
   border-radius: 232px;
-  mask-image: url(../Asset/Image/Avatar.gif);
-  -webkit-mask-image: url(../Asset/Image/Avatar.gif);
+  mask-image: url(../Image/Avatar.gif);
+  -webkit-mask-image: url(../Image/Avatar.gif);
 }
 
 .avatar:hover {
@@ -85,7 +85,7 @@
 .description {
   position: relative;
   text-align: justify;
-  font-size: 26px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 500;
   line-height: 1;
@@ -120,6 +120,46 @@
 
 .social-link {
   margin-right: 36px;
+  position: relative;
+}
+
+.click-me {
+  position: absolute;
+  top: -60%;
+  right: -100%;
+  border-radius: 10px;
+  background-color: #fd998f;
+  padding: 10px 15px;
+  color: #ffefcf;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s;
+  cursor: default;
+  animation: popping-scale 1s ease-in-out infinite;
+}
+
+.click-me-small-dot {
+  position: absolute;
+  background-color: #fd998f;
+  top: -13%;
+  right: 25%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  cursor: default;
+  animation: scale-in 0.9s ease-in-out infinite;
+}
+
+.click-me-medium-dot {
+  position: absolute;
+  background-color: #fd998f;
+  top: -30%;
+  right: 10%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: default;
+  animation: scale-in 0.9s ease-in-out 1s infinite;
 }
 
 .social-img {
@@ -127,8 +167,13 @@
   transition: all 0.3s;
 }
 
+.discord-social-img {
+  animation: popping-scale 1s ease-in-out infinite;
+}
+
 .social-img:hover {
   transform: scale(1.2);
+  animation:none;
 }
 
 .animate__animated .animate__delay-6s {
@@ -178,4 +223,25 @@
 
 .audioBtn img {
   width: 60px;
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes popping-scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

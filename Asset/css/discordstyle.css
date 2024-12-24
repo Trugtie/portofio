@@ -1,0 +1,367 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  color: white;
+}
+
+.background {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-img {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../Image/discordpageimages/bg.png");
+  background-repeat: no-repeat;
+  background-position: 15% 20%;
+  background-size: cover;
+  filter: saturate(120%);
+}
+
+.overlay {
+  width: 600px;
+  height: 720px;
+  background-image: linear-gradient(to bottom, #f004be, #509fd7);
+  padding: 0.4%;
+  border-radius: 2%;
+  position: relative;
+}
+
+.discord-container {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-section {
+  width: 100%;
+  height: 30%;
+  background-image: url("../Image/discordpageimages/banner.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2.5% 2.5% 0% 0%;
+}
+
+.info-section {
+  width: 100%;
+  height: 70%;
+  background-image: linear-gradient(to bottom, #461353, #013f65);
+  border-radius: 0% 0% 2.5% 2.5%;
+  padding: 0 2%;
+}
+
+.header-button-container {
+  position: relative;
+  padding-top: 16px;
+  display: flex;
+  justify-content: end;
+}
+
+.message-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #9c006b;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.message-btn svg {
+  margin-right: 5px;
+}
+
+.avatar-group {
+  padding-left: 5%;
+}
+
+.avatar-group img {
+  position: absolute;
+}
+
+.avatar-overlay {
+  left: 0;
+  top: -150%;
+  max-width: 140px;
+}
+
+.avatar {
+  left: 2%;
+  top: -120%;
+  max-width: 120px;
+  border-radius: 50%;
+  border: 7px solid rgb(77, 0, 77);
+}
+
+.name {
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 1%;
+}
+
+.sub-name {
+  display: flex;
+  justify-content: start;
+  font-size: 14px;
+  font-weight: 600;
+  align-items: center;
+}
+
+.sub-name div {
+  margin-left: 5px;
+}
+
+.subname-icon {
+  background-color: rgba(0, 0, 0, 0.164);
+  border: 1px solid rgba(255, 255, 255, 0.144);
+  padding: 1px;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.subname-icon img {
+  width: 20px;
+  margin-right: 2px;
+}
+
+.subname-icon img:last-child {
+  margin-right: 0;
+}
+
+.dotSpacer {
+  width: 4px;
+  height: 4px;
+  background-color: white;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.introduce {
+  background-color: rgba(0, 0, 0, 0.521);
+  height: 70%;
+  margin: 1% 0;
+  border-radius: 2%;
+}
+
+.introduce-header {
+  font-size: 14px;
+  text-decoration-line: underline;
+  text-underline-offset: 8px;
+  padding: 16px 16px 5px 16px;
+}
+.divider {
+  margin: 0px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.384);
+}
+
+.introduce-scrollview {
+  overflow-y: scroll;
+  height: 80%;
+  width: 100%;
+}
+
+.introduce-content {
+  height: 500px;
+  width: 100%;
+  padding: 16px;
+  font-size: 14px;
+}
+
+.introduce-scrollview::-webkit-scrollbar {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.introduce-scrollview::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border: 6px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
+}
+
+.introduce-content > div {
+  margin-bottom: 20px;
+}
+
+.introduce-title {
+  padding-bottom: 5px;
+}
+
+.introduce-link {
+  text-decoration: none;
+  color: #3bb4fd;
+}
+
+.introduce-link:visited {
+  color: #3bb4fd;
+}
+
+.introduce-link:hover {
+  text-decoration: underline;
+}
+
+.connection-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 15px;
+  column-gap: 15px;
+}
+
+.connection-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.384);
+  width: 100%;
+  padding: 12px 8px;
+  border-radius: 5px;
+}
+
+.connection-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.connection-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.flowerStarContainer {
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.flowerStarContainer-childContainer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.connection-item-id {
+  flex-grow: 2;
+  margin-left: 10px;
+}
+
+.connection-item-text-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.connection-item-text {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.anchor-link svg {
+  transform: rotate(45deg);
+}
+
+.anchor-link svg polygon {
+  fill: rgba(255, 255, 255, 0.788);
+}
+
+.anchor-link svg:hover polygon {
+  fill: rgb(255, 255, 255);
+}
+
+.note-area {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: transparent;
+  padding: 5px;
+}
+
+.note-area::-webkit-scrollbar {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.note-area::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border: 6px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
+}
+
+.note-area::placeholder {
+  color: rgba(255, 255, 255, 0.788);
+  font-weight: lighter;
+}
+
+.note-area:focus {
+  background-color: rgba(0, 0, 0, 0.363);
+}
+
+.blossom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+.discord-online {
+  position: absolute;
+  left: 90px;
+}
+
+.follow-container {
+  padding: 20px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.904);
+  position: absolute;
+  left: 150px;
+  top: 10px;
+}
+
+.follow-container img {
+  width: 16px;
+  position: relative;
+  margin-right: 5px;
+}
+
+.small-black-circle {
+  width: 13px;
+  height: 13px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  left: 150px;
+  top: -20px;
+}
+
+.medium-black-circle {
+  width: 21px;
+  height: 21px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  left: 165px;
+  top: -5px;
+}

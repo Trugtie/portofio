@@ -1,9 +1,10 @@
 // Wrap every letter in a span
-var textWrapper = document.querySelector(".description .letters");
-textWrapper.innerHTML = textWrapper.textContent.replace(
+var textWrappera = document.querySelector(".description .letters");
+textWrappera.innerHTML = textWrappera.textContent.replace(
   /\S/g,
   "<span class='letter'>$&</span>"
 );
+
 
 anime.timeline({ loop: false }).add({
   targets: ".description .letter",
