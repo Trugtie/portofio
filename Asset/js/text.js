@@ -5,7 +5,6 @@ textWrappera.innerHTML = textWrappera.textContent.replace(
   "<span class='letter'>$&</span>"
 );
 
-
 anime.timeline({ loop: false }).add({
   targets: ".description .letter",
   scale: [0, 1],
@@ -20,9 +19,9 @@ const soundPause = document.querySelector(".soundMute");
 const audioBtn = document.querySelector(".audioBtn");
 
 audio.volume = 0.2;
-var isPlaying = true;
+var isPlaying = false;
 
-soundPause.style.display = "none";
+soundPlay.style.display = "none";
 
 audioBtn.addEventListener("click", (e) => {
   console.log("Click " + isPlaying);
