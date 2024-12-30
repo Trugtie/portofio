@@ -173,7 +173,7 @@
 
 .social-img:hover {
   transform: scale(1.2);
-  animation:none;
+  animation: none;
 }
 
 .animate__animated .animate__delay-6s {
@@ -215,6 +215,7 @@
   bottom: 10px;
   right: 10px;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .audioBtn:hover {
@@ -223,6 +224,19 @@
 
 .audioBtn img {
   width: 60px;
+}
+
+.music-player {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 15%;
+  transform: rotate(-20deg);
+  cursor: pointer;
+}
+
+.music-player-anim {
+  animation: music-player-anim 1s ease-in-out infinite;
 }
 
 @keyframes scale-in {
@@ -243,5 +257,17 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes music-player-anim {
+  0% {
+    transform: rotate(-20deg) scale(1);
+  }
+  50% {
+    transform: rotate(-15deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(-20deg) scale(1);
   }
 }
