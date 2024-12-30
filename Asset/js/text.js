@@ -14,10 +14,16 @@ anime.timeline({ loop: false }).add({
 });
 
 const audio = document.querySelector(".audio");
+
 const soundPlay = document.querySelector(".soundPlay");
 const soundPause = document.querySelector(".soundMute");
+
 const audioBtn = document.querySelector(".audioBtn");
 const musicPlayer = document.querySelector(".music-player");
+
+const avatar = document.querySelector(".avatar");
+
+const socialLinkImages = document.querySelectorAll(".social-img");
 
 audio.volume = 0.2;
 var isPlaying = false;
@@ -35,12 +41,28 @@ musicPlayer.addEventListener("click", (e) => {
 function toggleSound() {
   if (isPlaying) {
     musicPlayer.classList.remove("music-player-anim");
+    audioBtn.classList.remove("popping-scale");
+
+    avatar.classList.remove("popping-music");
+
+    socialLinkImages.forEach((element) => {
+      element.classList.remove("popping-music");
+    });
+
     audio.pause();
     soundPause.style.display = "block";
     soundPlay.style.display = "none";
     isPlaying = false;
   } else {
     musicPlayer.classList.add("music-player-anim");
+    audioBtn.classList.add("popping-scale");
+
+    avatar.classList.add("popping-music");
+
+    socialLinkImages.forEach((element) => {
+      element.classList.add("popping-music");
+    });
+
     audio.play();
     soundPlay.style.display = "block";
     soundPause.style.display = "none";
