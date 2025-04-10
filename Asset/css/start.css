@@ -1,0 +1,53 @@
+.portofio-section {
+  display: none;
+}
+
+.start-visit {
+  display: block;
+}
+
+.start-bg {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.start-container {
+  width: 400px;
+  color: white;
+  border: 3px solid white;
+  cursor: pointer;
+  border-radius: 10px;
+  position: relative;
+}
+
+.start-container-overlay {
+  background-color: rgb(214, 2, 101);
+  border-radius: 5px;
+  width: 0%;
+  height: 60px;
+  transition: all 0.3s;
+}
+
+.start-container:hover .start-container-overlay {
+  width: 100%;
+}
+
+.start-container-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.start-container-text h1 {
+  line-height: 20px;
+}

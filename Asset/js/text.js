@@ -69,3 +69,5 @@ function toggleSound() {
     isPlaying = true;
   }
 }
+
+export { toggleSound };
