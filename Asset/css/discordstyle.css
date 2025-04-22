@@ -365,3 +365,17 @@
   left: 165px;
   top: -5px;
 }
+
+.heart-cute{
+  border: 1px solid #4a2c63;
+  border-radius: 5px;
+  background-color: #44295c;
+  display:  flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffffad;
+}
+
+.heart-cute img{
+  width: 15px;
+}
