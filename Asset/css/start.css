@@ -20,7 +20,7 @@
   width: 400px;
   color: white;
   border: 3px solid white;
-  cursor: pointer;
+  cursor: none;
   border-radius: 10px;
   position: relative;
 }

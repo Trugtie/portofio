@@ -10,6 +10,18 @@
   font-family: MyFont, sans-serif;
 }
 
+html {
+  cursor: none;
+}
+
+#custom-cursor {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 99;
+}
+
 .portofio-section {
   width: 100vw;
   height: 100vh;
@@ -174,6 +186,7 @@
 .social-img:hover {
   transform: scale(1.2);
   animation: none;
+  cursor: none;
 }
 
 .animate__animated .animate__delay-6s {
@@ -215,7 +228,6 @@
   bottom: 10px;
   right: 10px;
   transition: all 0.3s;
-  cursor: pointer;
 }
 
 .audioBtn:hover {
@@ -232,7 +244,11 @@
   left: -5%;
   width: 15%;
   transform: rotate(-20deg);
-  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.music-player:hover {
+  transform: rotate(-20deg) scale(1.2);
 }
 
 .music-player-anim {
@@ -247,8 +263,8 @@
   animation: popping-music 1s ease-in-out infinite;
 }
 
-.viewer-count{
- text-align: end;
+.viewer-count {
+  text-align: end;
 }
 
 @keyframes scale-in {

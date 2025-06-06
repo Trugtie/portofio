@@ -6,6 +6,19 @@
   color: white;
 }
 
+html {
+  cursor: none;
+}
+
+#custom-cursor {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 99;
+  transition: transform 0.3s;
+}
+
 .background {
   height: 100vh;
   width: 100vw;
@@ -211,6 +224,7 @@
 
 .introduce-link:hover {
   text-decoration: underline;
+  cursor: none;
 }
 
 .connection-container {
@@ -281,6 +295,7 @@
 
 .anchor-link svg:hover polygon {
   fill: rgb(255, 255, 255);
+  cursor: none;
 }
 
 .note-area {
@@ -366,16 +381,16 @@
   top: -5px;
 }
 
-.heart-cute{
+.heart-cute {
   border: 1px solid #4a2c63;
   border-radius: 5px;
   background-color: #44295c;
-  display:  flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   color: #ffffffad;
 }
 
-.heart-cute img{
+.heart-cute img {
   width: 15px;
 }
