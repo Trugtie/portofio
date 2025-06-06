@@ -12,6 +12,7 @@
 
 html {
   cursor: none;
+  overflow: hidden;
 }
 
 #custom-cursor {

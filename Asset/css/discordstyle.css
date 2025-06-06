@@ -8,6 +8,7 @@
 
 html {
   cursor: none;
+  overflow: hidden;
 }
 
 #custom-cursor {
@@ -16,7 +17,6 @@ html {
   height: 40px;
   pointer-events: none;
   z-index: 99;
-  transition: transform 0.3s;
 }
 
 .background {
