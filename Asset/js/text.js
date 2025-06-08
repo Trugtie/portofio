@@ -13,7 +13,7 @@ anime.timeline({ loop: false }).add({
   delay: (el, i) => 60 * (i + 1),
 });
 
-const audio = document.querySelector(".audio");
+const bgVideo = document.querySelector(".bg-video");
 
 const soundPlay = document.querySelector(".soundPlay");
 const soundPause = document.querySelector(".soundMute");
@@ -25,7 +25,7 @@ const avatar = document.querySelector(".avatar");
 
 const socialLinkImages = document.querySelectorAll(".social-img");
 
-audio.volume = 0.2;
+bgVideo.volume = 0.2;
 var isPlaying = false;
 
 soundPlay.style.display = "none";
@@ -49,7 +49,7 @@ function toggleSound() {
       element.classList.remove("popping-music");
     });
 
-    audio.pause();
+    bgVideo.pause();
     soundPause.style.display = "block";
     soundPlay.style.display = "none";
     isPlaying = false;
@@ -63,7 +63,7 @@ function toggleSound() {
       element.classList.add("popping-music");
     });
 
-    audio.play();
+    bgVideo.play();
     soundPlay.style.display = "block";
     soundPause.style.display = "none";
     isPlaying = true;
