@@ -28,15 +28,13 @@ html {
   align-items: center;
 }
 
-.background-img {
-  position: fixed;
-  height: 100vh;
+.bg-video {
   width: 100vw;
-  background-image: url("../Image/discordpageimages/bg.png");
-  background-repeat: no-repeat;
-  background-position: 15% 20%;
-  background-size: cover;
-  filter: saturate(120%);
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .overlay {
@@ -211,6 +209,11 @@ html {
 
 .introduce-title {
   padding-bottom: 5px;
+}
+
+.introduce-title_image {
+  width: 19.25px;
+  margin-right: 5px;
 }
 
 .introduce-link {
