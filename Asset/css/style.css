@@ -12,7 +12,7 @@
 
 html {
   cursor: none;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #custom-cursor {
@@ -24,14 +24,14 @@ html {
 }
 
 .portofio-section {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   position: relative;
 }
 
 .bg-video {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   position: fixed;
   top: 0;
@@ -42,9 +42,6 @@ html {
   max-width: 1073px;
   height: 500px;
   position: absolute;
-  margin: auto;
-  margin: auto;
-  margin: auto;
   margin: auto;
   left: 0;
   right: 0;
@@ -310,5 +307,207 @@ html {
   }
   100% {
     transform: rotate(-20deg) scale(1);
+  }
+}
+
+/* Tablet nhỏ */
+@media (max-width: 768px) {
+  .avatar {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: 0 auto;
+    transition: all 0.3s;
+    width: 210px;
+    height: 280px;
+    border-radius: 232px;
+    mask-image: url(../Image/Avatar.gif);
+    -webkit-mask-image: url(../Image/Avatar.gif);
+  }
+
+  .avatar-border {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 232px;
+    border: #fd998f 3px solid;
+  }
+
+  .music-player {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 15%;
+    transform: rotate(-20deg);
+    transition: all 0.3s;
+  }
+
+  .info-content {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    top: 0;
+    padding: 0 5%;
+  }
+
+  .name {
+    text-align: center;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-bottom: 40px;
+    text-transform: uppercase;
+  }
+
+  .description {
+    position: relative;
+    text-align: justify;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+    padding-bottom: 50px;
+  }
+
+  .social-tilte {
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-bottom: 40px;
+    text-transform: uppercase;
+  }
+
+  .social-link {
+    margin-right: 10px;
+    position: relative;
+  }
+}
+
+/* Mobile nhỏ */
+@media (max-width: 480px) {
+  .avatar {
+    position: relative;
+    top: 0%;
+    right: 0%;
+    margin: 0 auto;
+    transition: all 0.3s;
+    width: 170px;
+    height: 170px;
+    border-radius: 232px;
+    mask-image: url(../Image/Avatar.gif);
+    -webkit-mask-image: url(../Image/Avatar.gif);
+  }
+
+  .avatar-border {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 232px;
+    border: #fd998f 3px solid;
+  }
+
+  .music-player {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 15%;
+    transform: rotate(-20deg);
+    transition: all 0.3s;
+  }
+
+  .social-group {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 10px;
+  }
+
+  .info-content {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    top: 0;
+    padding: 0 5%;
+  }
+
+  .name {
+    text-align: center;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-bottom: 35px;
+    text-transform: uppercase;
+  }
+
+  .description {
+    position: relative;
+    text-align: justify;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1;
+    padding-bottom: 40px;
+  }
+
+  .social-tilte {
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding-bottom: 35px;
+    text-transform: uppercase;
+  }
+
+  .audioBtn img {
+    width: 30px;
+  }
+
+  .social-link {
+    margin-right: 0px;
+    position: relative;
+  }
+
+  .click-me {
+    position: absolute;
+    top: -10%;
+    right: -120%;
+    border-radius: 10px;
+    background-color: #fd998f;
+    padding: 10px 15px;
+    color: #ffefcf;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s;
+    cursor: default;
+    animation: popping-scale 1s ease-in-out infinite;
+  }
+
+  .click-me-small-dot {
+    position: absolute;
+    background-color: #fd998f;
+    top: 40%;
+    right: -10%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    cursor: default;
+    animation: scale-in 0.9s ease-in-out infinite;
+  }
+
+  .click-me-medium-dot {
+    position: absolute;
+    background-color: #fd998f;
+    top: 30%;
+    right: -25%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: default;
+    animation: scale-in 0.9s ease-in-out 1s infinite;
   }
 }
