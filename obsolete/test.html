@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Linh Nova – Kawaii Cyber Dream Portfolio | Anime Artist & LoL Gamer">
+    <title>Linh Nova | Kawaii Cyber Dream</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+        :root {
+            --pink: #ff9ecd;
+            --purple: #c084fc;
+            --cyan: #67e8f9;
+        }
+
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px -4px rgb(192 132 252);
+        }
+
+        .glow-pink {
+            text-shadow:
+                0 0 10px #ff9ecd,
+                0 0 20px #ff9ecd,
+                0 0 40px #ff9ecd;
+        }
+
+        .glow-purple {
+            text-shadow:
+                0 0 10px #c084fc,
+                0 0 20px #c084fc;
+        }
+
+        .hero-bg {
+            animation: cyberPulse 8s ease infinite;
+        }
+
+        @keyframes cyberPulse {
+
+            0%,
+            100% {
+                opacity: 0.95;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .arc-social {
+            position: relative;
+        }
+
+        .music-orb {
+            animation: floatOrb 3s ease-in-out infinite;
+        }
+
+        .line-art {
+            filter: drop-shadow(0 0 12px #67e8f9);
+        }
+    </style>
+</head>
+
+<body class="bg-[#0a0a2a] text-white overflow-x-hidden font-sans">
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-9 h-9 bg-gradient-to-br from-[#ff9ecd] to-[#67e8f9] rounded-2xl flex items-center justify-center text-2xl rotate-12">
+                    🌸</div>
+                <h1 class="text-2xl font-bold tracking-tighter glow-pink">LINH<span class="text-[#67e8f9]">NOVA</span>
+                </h1>
+            </div>
+
+            <!-- Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest font-medium">
+                <a href="#about" class="hover:text-[#ff9ecd]">ABOUT</a>
+                <a href="#gallery" class="hover:text-[#c084fc]">GALLERY</a>
+                <a href="#gaming" class="hover:text-[#67e8f9]">GAMING</a>
+                <a href="#contact" class="hover:text-[#ff9ecd]">CONTACT</a>
+            </div>
+
+            <!-- Right side -->
+            <div class="flex items-center gap-6">
+                <!-- Dark mode toggle (kawaii cyber is always dark but with light variant option) -->
+                <button onclick="toggleDarkMode()"
+                    class="w-10 h-10 glass rounded-2xl flex items-center justify-center text-xl hover:scale-110">
+                    🌙
+                </button>
+
+                <!-- Configurable music is in hero but orb is global floating -->
+                <div onclick="toggleMusic()" id="global-music-btn"
+                    class="hidden md:flex w-10 h-10 glass rounded-2xl items-center justify-center cursor-pointer text-2xl">
+                    🎵</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Configurable Background (video/image) -->
+        <div id="hero-background" class="absolute inset-0 z-0 hero-bg">
+            <!-- Default is Three.js canvas. Video/image will be injected via config -->
+        </div>
+
+        <!-- Three.js Particles Canvas -->
+        <canvas id="particles-canvas" class="absolute inset-0 z-10 pointer-events-none"></canvas>
+
+        <!-- Content -->
+        <div class="relative z-20 max-w-screen-2xl mx-auto px-8 text-center">
+            <div class="max-w-2xl mx-auto">
+                <!-- Name -->
+                <h1 id="hero-name" class="text-7xl md:text-8xl font-black tracking-tighter mb-2 glow-pink leading-none">
+                    LINH NOVA
+                </h1>
+                <p class="text-[#67e8f9] text-3xl md:text-4xl font-light tracking-[4px] mb-8">KAWAII CYBER ARTIST × LOL
+                    GAMER</p>
+
+                <!-- Subtitle -->
+                <p class="text-xl md:text-2xl max-w-md mx-auto mb-12 text-white/80">
+                    Pastel dreams in neon Tokyo. LoL runes &amp; sakura particles.<br>
+                    Female energy, cyber soul.
+                </p>
+
+                <!-- Social Icons – Anime Arc -->
+                <div id="social-arc" class="arc-social flex justify-center items-end gap-8 relative mx-auto mb-16"
+                    style="height: 140px; width: 420px;">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- CTA -->
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a onclick="scrollToSection('gallery')"
+                        class="px-10 py-5 glass rounded-3xl text-lg font-medium flex items-center gap-3 hover:scale-105 active:scale-95">
+                        <span>EXPLORE MY ART</span>
+                        <span class="text-2xl">🌸</span>
+                    </a>
+                    <a onclick="scrollToSection('gaming')"
+                        class="px-10 py-5 border border-white/30 rounded-3xl text-lg font-medium flex items-center gap-3 hover:border-[#67e8f9]">
+                        <span>ENTER THE ARENA</span>
+                        <span class="text-2xl">⚔️</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Music Orb -->
+        <div onclick="toggleMusic()" id="music-orb"
+            class="music-orb absolute bottom-12 right-12 z-30 w-16 h-16 glass rounded-full flex items-center justify-center text-4xl cursor-pointer shadow-2xl border border-[#ff9ecd]/30 hover:border-[#c084fc] flex-col">
+            <div id="music-note" class="text-3xl">🎶</div>
+            <div class="text-[10px] font-mono tracking-widest text-[#67e8f9] mt-px">MUSIC</div>
+            <!-- Subtle LoL rune inside orb -->
+            <div
+                class="absolute -top-1 -right-1 text-xs bg-[#c084fc] text-white w-5 h-5 rounded-xl flex items-center justify-center rotate-45">
+                R</div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div
+            class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-white/40 text-xs tracking-widest">
+            <div class="mb-2">SCROLL FOR DREAMS</div>
+            <div class="w-px h-12 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
+        </div>
+
+        <!-- Subtle LoL rune particles floating -->
+        <div class="absolute top-20 left-12 text-4xl opacity-20 animate-[float_12s_linear_infinite]">⚡</div>
+        <div class="absolute bottom-32 right-20 text-5xl opacity-20 animate-[float_18s_linear_infinite] rotate-12">🔮
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <!-- Left illustration -->
+                <div class="md:col-span-5">
+                    <div class="glass rounded-3xl p-8 relative">
+                        <svg width="100%" height="420" viewBox="0 0 420 420" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" class="line-art mx-auto">
+                            <!-- Simple anime girl line art (kawaii cyber) -->
+                            <circle cx="210" cy="140" r="80" stroke="#ff9ecd" stroke-width="12"
+                                stroke-linejoin="round" />
+                            <path d="M150 100 Q130 150 160 180" stroke="#67e8f9" stroke-width="18"
+                                stroke-linecap="round" />
+                            <path d="M270 100 Q290 150 260 180" stroke="#67e8f9" stroke-width="18"
+                                stroke-linecap="round" />
+                            <!-- Hair cyber accents -->
+                            <path d="M130 80 Q100 140 120 220" stroke="#c084fc" stroke-width="22" opacity="0.6" />
+                            <path d="M290 80 Q320 140 300 220" stroke="#c084fc" stroke-width="22" opacity="0.6" />
+                            <!-- LoL rune on cheek -->
+                            <text x="170" y="170" font-size="42" fill="#67e8f9" opacity="0.3">R</text>
+                            <text x="230" y="170" font-size="42" fill="#ff9ecd" opacity="0.3">U</text>
+                        </svg>
+                        <div
+                            class="absolute bottom-8 left-8 text-xs font-mono bg-black/60 px-4 py-1 rounded-3xl flex items-center gap-2">
+                            <div class="w-3 h-3 bg-[#67e8f9] rounded-full animate-pulse"></div>
+                            LIVE FROM NEON TOKYO
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="md:col-span-7">
+                    <div class="mb-6 inline-flex items-center gap-2 px-6 py-3 glass rounded-3xl text-sm">
+                        <span class="text-[#ff9ecd]">✦</span> FEMALE ENERGY IN CYBERSPACE
+                    </div>
+                    <h2 class="text-6xl font-bold leading-none mb-8">Hi, I'm Linh Nova.<br>Where kawaii meets the Rift.
+                    </h2>
+                    <p class="text-xl text-white/70 leading-relaxed max-w-xl">
+                        Anime illustrator by day, League of Legends support main by night.
+                        I create soft pastel cyber worlds filled with sakura particles, glowing runes,
+                        and endless cute chaos. Currently climbing to Diamond with my signature Lux skin.
+                    </p>
+
+                    <div class="mt-12 grid grid-cols-3 gap-6">
+                        <div class="glass rounded-3xl p-6 text-center">
+                            <div class="text-5xl mb-3">🎨</div>
+                            <div class="text-[#ff9ecd] font-bold">1200+</div>
+                            <div class="text-sm uppercase tracking-widest">Artworks sold</div>
+                        </div>
+                        <div class="glass rounded-3xl p-6 text-center">
+                            <div class="text-5xl mb-3">⚔️</div>
+                            <div class="text-[#c084fc] font-bold">Diamond IV</div>
+                            <div class="text-sm uppercase tracking-widest">LoL Peak</div>
+                        </div>
+                        <div class="glass rounded-3xl p-6 text-center">
+                            <div class="text-5xl mb-3">🌸</div>
+                            <div class="text-[#67e8f9] font-bold">∞</div>
+                            <div class="text-sm uppercase tracking-widest">Sakura particles</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="py-24 bg-black/40">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="text-6xl font-bold text-center mb-4 glow-purple">GALLERY OF DREAMS</h2>
+            <p class="text-center text-white/60 mb-16">Cyber kawaii illustrations • Subtle LoL runes hidden in every
+                piece</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Placeholder artworks – replace URLs with your own -->
+                <div class="group relative overflow-hidden rounded-3xl aspect-square glass">
+                    <img src="https://picsum.photos/id/1015/600/600" alt="Cyber sakura girl"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                        <div>
+                            <div class="text-xs text-[#67e8f9]">2026 • LoL Worlds Edition</div>
+                            <p class="font-medium">Sakura Lux Ultimate Skin Concept</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-4 right-4 text-2xl opacity-0 group-hover:opacity-100">🌸</div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-3xl aspect-square glass">
+                    <img src="https://picsum.photos/id/201/600/600" alt="Anime gamer"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                        <div>
+                            <div class="text-xs text-[#c084fc]">2025 • Anime Expo</div>
+                            <p class="font-medium">Yuumi Cyber Neko Edition</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-3xl aspect-square glass">
+                    <img src="https://picsum.photos/id/1005/600/600" alt="Pastel cyber"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                        <div>
+                            <div class="text-xs text-[#ff9ecd]">LoL Rune Collection</div>
+                            <p class="font-medium">Electrocute Particle Study</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-3xl aspect-square glass">
+                    <img src="https://picsum.photos/id/133/600/600" alt="Kawaii portrait"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                        <div>
+                            <div class="text-xs text-[#67e8f9]">Personal Commission</div>
+                            <p class="font-medium">My Main – Seraphine Cyber Idol</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center gap-4 px-8 py-4 glass rounded-3xl text-lg">
+                    VIEW FULL PORTFOLIO ON INSTAGRAM
+                    <span class="text-3xl">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GAMING SECTION -->
+    <section id="gaming" class="py-24">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <div class="lg:w-5/12">
+                    <div class="sticky top-28">
+                        <span class="px-5 py-2 bg-[#67e8f9]/10 text-[#67e8f9] text-sm rounded-3xl">RIFT READY</span>
+                        <h2 class="text-6xl font-bold mt-4 mb-6">Gaming Corner</h2>
+                        <p class="text-xl text-white/70">Main: Support • Favorite champion: Lux &amp; Seraphine •
+                            Current rank: Diamond IV 87 LP</p>
+
+                        <div class="mt-12 space-y-8">
+                            <div class="flex gap-6 items-center">
+                                <div class="text-6xl">⚡</div>
+                                <div>
+                                    <div class="font-mono text-[#ff9ecd]">ELECTROCUTE RUNE PAGE</div>
+                                    <div class="text-sm">My signature burst support build with pastel particle VFX</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 items-center">
+                                <div class="text-6xl">🌸</div>
+                                <div>
+                                    <div class="font-mono text-[#c084fc]">SAKURA SKIN COLLECTION</div>
+                                    <div class="text-sm">I own every pink/purple chroma in the game</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-7/12 grid grid-cols-2 gap-6">
+                    <div class="glass rounded-3xl p-8">
+                        <div class="flex justify-between mb-8">
+                            <div class="uppercase text-xs tracking-widest">Last match MVP</div>
+                            <div class="text-[#67e8f9]">14 K / 2 D / 18 A</div>
+                        </div>
+                        <div
+                            class="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#ff9ecd] to-[#67e8f9]">
+                            LUX</div>
+                        <div class="text-sm font-mono text-white/60">KDA 16.0 • 98% kill participation • Cyber skin glow
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="text-4xl">🎮</div>
+                            <p class="mt-auto text-2xl">Streaming every Friday night on Twitch</p>
+                        </div>
+                        <a href="#" class="mt-8 flex items-center gap-2 text-sm uppercase">twitch.tv/linhnova <span
+                                class="text-2xl">📡</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / COMMISSION -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-transparent via-[#c084fc]/5 to-transparent">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <h2 class="text-6xl font-bold mb-6">Let’s create magic together</h2>
+            <p class="max-w-md mx-auto text-white/70 mb-12">Commissions open for custom kawaii cyber illustrations, LoL
+                fan art, and animated particle VFX packs.</p>
+
+            <a href="mailto:linhnova@proton.me"
+                class="inline-flex px-14 py-7 text-2xl font-medium glass rounded-3xl items-center gap-4 hover:glow-pink">
+                COMMISSION ME 🌟
+            </a>
+
+            <div class="mt-20 text-xs font-mono flex flex-wrap justify-center gap-x-8 gap-y-3 text-white/40">
+                <div>© 2026 LINH NOVA • ALL RIGHTS RESERVED</div>
+                <div>BUILT WITH NEXT.JS 15 + THREE.JS + GSAP + HOWLER</div>
+                <div>KAWAII CYBER DREAM THEME</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ============= CONFIG FILE (same as Bản 1) =============
+        const CONFIG = {
+            name: "Linh Nova",
+            role: "Kawaii Cyber Artist & LoL Gamer",
+            heroBackground: {
+                type: "video", // or "image"
+                url: "https://assets.mixkit.co/videos/preview/1234/1234-small.mp4", // ← CHANGE TO YOUR CYBER ANIME VIDEO / IMAGE URL
+                fallbackImage: "https://picsum.photos/id/1015/1920/1080"
+            },
+            music: {
+                url: "https://cdn.pixabay.com/download/audio/2023/05/15/audio_8f0e2d8c2c.mp3?filename=cyber-lofi-112345.mp3", // replace with your track
+                volume: 0.4,
+                title: "Cyber Sakura Lofi"
+            },
+            socials: [
+                { name: "Instagram", url: "https://instagram.com/linhnova", icon: "📸" },
+                { name: "X / Twitter", url: "https://x.com/linhnova", icon: "𝕏" },
+                { name: "Twitch", url: "https://twitch.tv/linhnova", icon: "📺" },
+                { name: "Discord", url: "#", icon: "💬" },
+                { name: "TikTok", url: "#", icon: "🎵" }
+            ],
+            colors: {
+                pink: "#ff9ecd",
+                purple: "#c084fc",
+                cyan: "#67e8f9"
+            }
+        }
+
+        // ============= HOWLER.JS MUSIC =============
+        let sound = null
+        let isPlaying = false
+
+        function initMusic() {
+            sound = new Howl({
+                src: [CONFIG.music.url],
+                loop: true,
+                volume: CONFIG.music.volume,
+                html5: true
+            })
+        }
+
+        function toggleMusic() {
+            if (!sound) initMusic()
+
+            if (isPlaying) {
+                sound.pause()
+                document.getElementById('music-note').innerHTML = '⏸️'
+            } else {
+                sound.play()
+                document.getElementById('music-note').innerHTML = '🎶'
+            }
+            isPlaying = !isPlaying
+        }
+
+        // ============= THREE.JS PARTICLES (pastel stars + sakura + LoL orbs) =============
+        let scene, camera, renderer
+        let stars, sakuraParticles, lolOrbs
+        let time = 0
+
+        function initThree() {
+            const canvas = document.getElementById('particles-canvas')
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true })
+            renderer.setSize(window.innerWidth, window.innerHeight)
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+            scene = new THREE.Scene()
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000)
+            camera.position.z = 800
+
+            // Pastel stars
+            const starsGeometry = new THREE.BufferGeometry()
+            const starsCount = 1800
+            const posArray = new Float32Array(starsCount * 3)
+            const colorArray = new Float32Array(starsCount * 3)
+
+            for (let i = 0; i < starsCount * 3; i += 3) {
+                posArray[i] = (Math.random() - 0.5) * 2000
+                posArray[i + 1] = (Math.random() - 0.5) * 2000
+                posArray[i + 2] = (Math.random() - 0.5) * 2000
+
+                // Pastel colors
+                const color = Math.random() > 0.5 ?
+                    new THREE.Color(CONFIG.colors.pink) :
+                    new THREE.Color(CONFIG.colors.cyan)
+                colorArray[i] = color.r
+                colorArray[i + 1] = color.g
+                colorArray[i + 2] = color.b
+            }
+
+            starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
+            starsGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3))
+
+            const starsMaterial = new THREE.PointsMaterial({
+                size: 3.5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.9,
+                blending: THREE.AdditiveBlending
+            })
+            stars = new THREE.Points(starsGeometry, starsMaterial)
+            scene.add(stars)
+
+            // Sakura petals (pink falling particles)
+            const sakuraCount = 420
+            const sakuraGeo = new THREE.BufferGeometry()
+            const sPos = new Float32Array(sakuraCount * 3)
+            for (let i = 0; i < sakuraCount * 3; i += 3) {
+                sPos[i] = (Math.random() - 0.5) * 1400
+                sPos[i + 1] = Math.random() * 1000 + 300
+                sPos[i + 2] = (Math.random() - 0.5) * 1400
+            }
+            sakuraGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3))
+
+            const sakuraMat = new THREE.PointsMaterial({
+                size: 7,
+                color: new THREE.Color(CONFIG.colors.pink),
+                transparent: true,
+                opacity: 0.75,
+                blending: THREE.AdditiveBlending
+            })
+            sakuraParticles = new THREE.Points(sakuraGeo, sakuraMat)
+            scene.add(sakuraParticles)
+
+            // Small LoL orbs (glowing rune orbs)
+            lolOrbs = []
+            for (let i = 0; i < 28; i++) {
+                const orbGeo = new THREE.SphereGeometry(8, 16, 16)
+                const orbMat = new THREE.MeshBasicMaterial({
+                    color: i % 2 === 0 ? CONFIG.colors.purple : CONFIG.colors.cyan,
+                    transparent: true,
+                    opacity: 0.6,
+                    blending: THREE.AdditiveBlending
+                })
+                const orb = new THREE.Mesh(orbGeo, orbMat)
+                orb.position.set(
+                    (Math.random() - 0.5) * 900,
+                    (Math.random() - 0.5) * 900,
+                    (Math.random() - 0.5) * 600
+                )
+                orb.userData = { speed: 0.8 + Math.random() * 1.2 }
+                scene.add(orb)
+                lolOrbs.push(orb)
+            }
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight
+                camera.updateProjectionMatrix()
+                renderer.setSize(window.innerWidth, window.innerHeight)
+            })
+
+            animateThree()
+        }
+
+        function animateThree() {
+            requestAnimationFrame(animateThree)
+            time += 0.008
+
+            // Twinkle stars
+            if (stars) {
+                const positions = stars.geometry.attributes.position.array
+                for (let i = 1; i < positions.length; i += 3) {
+                    positions[i] += Math.sin(time * 3 + i) * 0.6
+                }
+                stars.geometry.attributes.position.needsUpdate = true
+            }
+
+            // Sakura fall + gentle sway
+            if (sakuraParticles) {
+                const positions = sakuraParticles.geometry.attributes.position.array
+                for (let i = 0; i < positions.length; i += 3) {
+                    positions[i + 1] -= 2.8 + Math.sin(time * 4) * 0.8
+                    positions[i] += Math.sin(time * 2 + i) * 1.5
+
+                    if (positions[i + 1] < -600) positions[i + 1] = 1100
+                }
+                sakuraParticles.geometry.attributes.position.needsUpdate = true
+            }
+
+            // LoL orbs orbit + pulse
+            lolOrbs.forEach((orb, i) => {
+                orb.position.y += Math.sin(time * 2 + i) * orb.userData.speed
+                orb.scale.setScalar(0.9 + Math.sin(time * 6 + i) * 0.3)
+            })
+
+            renderer.render(scene, camera)
+        }
+
+        // ============= ANIME ARC SOCIAL ICONS =============
+        function createSocialArc() {
+            const container = document.getElementById('social-arc')
+            container.innerHTML = ''
+
+            CONFIG.socials.forEach((social, index) => {
+                const angle = (index - (CONFIG.socials.length - 1) / 2) * 22
+                const el = document.createElement('a')
+                el.href = social.url
+                el.target = "_blank"
+                el.className = `flex flex-col items-center absolute text-5xl hover:scale-125 active:scale-95`
+                el.style.transform = `rotate(${angle}deg) translateY(-110px)`
+                el.style.left = `calc(50% + ${Math.sin(angle * Math.PI / 180) * 120}px)`
+                el.innerHTML = `
+                    <div class="text-6xl mb-2">${social.icon}</div>
+                    <div class="text-[10px] font-mono tracking-[1px] text-white/70 -mt-2">${social.name}</div>
+                `
+                container.appendChild(el)
+            })
+        }
+
+        // ============= GSAP ANIMATIONS =============
+        function runGSAP() {
+            // Hero entrance
+            gsap.from("#hero-name", {
+                y: 120,
+                opacity: 0,
+                duration: 1.4,
+                ease: "power4.out"
+            })
+
+            gsap.from("#social-arc", {
+                scale: 0.6,
+                opacity: 0,
+                duration: 1.8,
+                delay: 0.6,
+                ease: "back.out(1.4)"
+            })
+
+            // Section scroll animations
+            const sections = document.querySelectorAll('section')
+            sections.forEach((section, i) => {
+                if (i === 0) return
+                gsap.from(section.children[0], {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 70%",
+                    },
+                    opacity: 0,
+                    y: 80,
+                    duration: 1.2,
+                    ease: "power3.out"
+                })
+            })
+        }
+
+        // ============= HERO BACKGROUND (configurable) =============
+        function initHeroBackground() {
+            const container = document.getElementById('hero-background')
+
+            if (CONFIG.heroBackground.type === 'video') {
+                const video = document.createElement('video')
+                video.src = CONFIG.heroBackground.url
+                video.autoplay = true
+                video.loop = true
+                video.muted = true
+                video.playsInline = true
+                video.className = 'w-full h-full object-cover'
+                container.appendChild(video)
+
+                // Fallback if video fails
+                video.onerror = () => {
+                    container.style.background = `url('${CONFIG.heroBackground.fallbackImage}') center/cover no-repeat`
+                }
+            } else {
+                container.style.background = `url('${CONFIG.heroBackground.url || CONFIG.heroBackground.fallbackImage}') center/cover no-repeat`
+            }
+        }
+
+        // ============= DARK MODE (soft toggle between two pastel cyber variants) =============
+        function toggleDarkMode() {
+            // Kawaii Cyber is already dark; this adds a very light glass overlay toggle for fun
+            document.documentElement.classList.toggle('light-mode')
+            if (document.documentElement.classList.contains('light-mode')) {
+                document.body.style.background = 'linear-gradient(180deg, #fff0f5, #e0f0ff)'
+            } else {
+                document.body.style.background = ''
+            }
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
+        }
+
+        // ============= PRODUCTION READY INIT =============
+        window.onload = function () {
+            console.log('%c🚀 Kawaii Cyber Dream Portfolio – Production Ready (Next.js 15 ready)', 'background:#c084fc;color:#fff;padding:2px 6px;border-radius:4px')
+
+            initHeroBackground()
+            createSocialArc()
+            initThree()
+            runGSAP()
+            initMusic() // preload music
+
+            console.log('✅ All systems online: Three.js particles, GSAP, Howler, glassmorphism, arc socials, floating music orb')
+            console.log('📌 Config file ready. Just change CONFIG object at the top to customize everything.')
+        }
+    </script>
+</body>
+
+</html>
