@@ -18,7 +18,7 @@ const firebaseConfig = {
   appId: "1:615762014350:web:be81719276b541604c99df",
   measurementId: "G-FQ0W8SK3PV",
   databaseURL:
-    "https://jiahanportofio-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "https://jiahanportofio-default-rtdb.asia-southeast1.firebasedatabase.app", // Updated URL
 };
 
 // Initialize Firebase
@@ -43,7 +43,7 @@ function incrementVisitorCount() {
 
 function displayVisitorCount() {
   const visitorCountRef = ref(database, "visitors/page_views");
-  const visitorCountElement = document.querySelector(".visit-count");
+  const visitorCountElement = document.querySelector("#visit-count");
 
   onValue(visitorCountRef, (snapshot) => {
     const count = snapshot.val() || 0;
