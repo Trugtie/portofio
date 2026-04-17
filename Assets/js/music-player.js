@@ -1,4 +1,4 @@
-// ====================== MUSIC PLAYER.JS - Final Fix Auto Restore ======================
+// ====================== MUSIC PLAYER.JS - Rút gọn tên bài hát + Auto Restore ======================
 
 let musicPlayer = null;
 let isPlaying = false;
@@ -6,9 +6,9 @@ let isPlaying = false;
 const MusicPlayer = {
   init() {
     this.bindEvents();
-    this.restoreSavedMusic(); // Quan trọng nhất
+    this.restoreSavedMusic();
     console.log(
-      "%c🎵 Music Player - Final Auto Restore Fixed 🌸",
+      "%c🎵 Music Player - Title shortened + Auto Restore Fixed 🌸",
       "color: #ff9edb; font-weight: bold;",
     );
   },
@@ -21,7 +21,6 @@ const MusicPlayer = {
     if (changeBtn)
       changeBtn.addEventListener("click", () => this.showMusicModal());
 
-    // Modal events
     document
       .getElementById("close-music-modal")
       .addEventListener("click", () => this.hideMusicModal());
@@ -31,6 +30,15 @@ const MusicPlayer = {
     document
       .getElementById("add-music-btn")
       .addEventListener("click", () => this.addMusicFromInput());
+  },
+
+  // ====================== RÚT GỌN TÊN BÀI HÁT ======================
+  shortenTitle(title) {
+    if (!title) return "YouTube Music";
+    const maxLength = 28; // Bạn có thể chỉnh số này (20 - 35)
+
+    if (title.length <= maxLength) return title;
+    return title.substring(0, maxLength).trim() + "...";
   },
 
   showMusicModal() {
@@ -63,7 +71,7 @@ const MusicPlayer = {
       musicPlayer.loadVideoById(videoId);
       musicPlayer.playVideo();
     } else {
-      this.createPlayer(videoId, true); // true = tự động phát
+      this.createPlayer(videoId, true);
     }
 
     localStorage.setItem("musicVideoId", videoId);
@@ -91,9 +99,14 @@ const MusicPlayer = {
           const savedVol = localStorage.getItem("musicVolume") || "65";
           event.target.setVolume(parseInt(savedVol));
 
-          const title = event.target.getVideoData().title || "YouTube Music";
-          document.getElementById("music-title").textContent = title;
-          localStorage.setItem("musicTitle", title);
+          const fullTitle =
+            event.target.getVideoData().title || "YouTube Music";
+
+          // Rút gọn tên trước khi hiển thị
+          const shortTitle = this.shortenTitle(fullTitle);
+
+          document.getElementById("music-title").textContent = shortTitle;
+          localStorage.setItem("musicTitle", fullTitle); // lưu tên đầy đủ
 
           if (autoPlay) {
             setTimeout(() => event.target.playVideo(), 800);
@@ -123,19 +136,17 @@ const MusicPlayer = {
   },
 
   togglePlay() {
-    // Nếu chưa có player nhưng có dữ liệu lưu → tạo lại player
     if (!musicPlayer) {
       const savedId = localStorage.getItem("musicVideoId");
       if (savedId) {
-        this.createPlayer(savedId, true); // Tự động phát
+        this.createPlayer(savedId, true);
         return;
       } else {
-        this.showMusicModal(); // Không có dữ liệu thì mới hiện modal
+        this.showMusicModal();
         return;
       }
     }
 
-    // Bình thường toggle play/pause
     isPlaying ? musicPlayer.pauseVideo() : musicPlayer.playVideo();
   },
 
@@ -169,9 +180,10 @@ const MusicPlayer = {
     const savedTitle = localStorage.getItem("musicTitle") || "YouTube Music";
     const wasPlaying = localStorage.getItem("musicWasPlaying") === "true";
 
-    document.getElementById("music-title").textContent = savedTitle;
+    // Rút gọn tên khi restore
+    const shortTitle = this.shortenTitle(savedTitle);
+    document.getElementById("music-title").textContent = shortTitle;
 
-    // Tạo player ngay khi load trang
     this.createPlayer(savedVideoId, wasPlaying);
   },
 };
