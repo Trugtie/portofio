@@ -1,12 +1,10 @@
-// ====================== MAIN.JS - INITIALIZER ======================
-
 document.addEventListener("DOMContentLoaded", () => {
   console.log(
     "%cLinh Portfolio - Loaded successfully 🌸",
     "color: #ff9edb; font-weight: bold; font-size: 14px;",
   );
 
-  // Khởi tạo tất cả modules
+  if (typeof initPreloader === "function") initPreloader();
   if (typeof initNavbar === "function") initNavbar();
   if (typeof initHero === "function") initHero();
   if (typeof initAbout === "function") initAbout();

@@ -1,17 +1,11 @@
-// ====================== HERO.JS - Background Video Player ======================
+// ====================== HERO.JS - Only Hero Content & Background Video ======================
 
 let heroPlayer = null;
 
 const heroConfig = {
   youtubeId: "F_Co6qvNsUY",
-  badge: {
-    icon: "🎨",
-    text: "Digital Artist & Gamer",
-  },
-  title: {
-    prefix: "Hi, I'm ",
-    highlight: "Linh",
-  },
+  badge: { icon: "🎨", text: "Digital Artist & Gamer" },
+  title: { prefix: "Hi, I'm ", highlight: "Linh" },
   subtitle:
     "Chào mừng bạn đến với thế giới của tôi — nơi nghệ thuật kỹ thuật số gặp gỡ gaming và những giấc mơ màu hồng.",
   buttons: [
@@ -25,9 +19,12 @@ const heroConfig = {
 };
 
 function initHero() {
-  console.log("%c ✅ Hero Background Player initialized 🌸", "color: #ff9edb;");
+  console.log("%c ✅ Hero content rendered 🌸", "color: #ff9edb;");
+  renderHeroContent();
+}
 
-  // Render nội dung
+// Render nội dung tĩnh của Hero
+function renderHeroContent() {
   const badgeIcon = document.querySelector(".badge .badge-icon");
   const badgeText = document.querySelector(".badge .badge-text");
   if (badgeIcon) badgeIcon.textContent = heroConfig.badge.icon;
@@ -56,14 +53,17 @@ function initHero() {
     imageEl.src = heroConfig.heroImage.src;
     imageEl.alt = heroConfig.heroImage.alt;
   }
-
-  // Khởi tạo Background Player
-  initHeroBackgroundPlayer();
 }
 
-// ====================== CHUNG API LOADER ======================
-function initHeroBackgroundPlayer() {
-  // Nếu API chưa load thì load một lần
+// Hàm riêng để khởi tạo Video Background (được gọi từ preloader sau khi progress xong)
+function initHeroVideo() {
+  if (heroPlayer) return;
+
+  console.log(
+    "%c🎥 Creating Hero Background Video with sound...",
+    "color: #ff9edb;",
+  );
+
   if (typeof YT === "undefined" && !window.youtubeAPILoaded) {
     window.youtubeAPILoaded = true;
     const tag = document.createElement("script");
@@ -72,11 +72,6 @@ function initHeroBackgroundPlayer() {
   }
 
   window.onYouTubeIframeAPIReady = () => {
-    console.log(
-      "%c🎥 YouTube IFrame API Ready - Creating Hero Player",
-      "color: #ff9edb;",
-    );
-
     heroPlayer = new YT.Player("hero-video", {
       videoId: heroConfig.youtubeId,
       playerVars: {
@@ -87,22 +82,26 @@ function initHeroBackgroundPlayer() {
         playlist: heroConfig.youtubeId,
         modestbranding: 1,
         rel: 0,
-        iv_load_policy: 3,
+        playsinline: 1,
+        enablejsapi: 1,
       },
       events: {
         onReady: (event) => {
           window.heroPlayer = event.target;
+          const savedVol = localStorage.getItem("videoVolume") || "40";
+          event.target.setVolume(parseInt(savedVol));
+          event.target.playVideo();
+
           console.log(
-            "%c🎥 Hero Background Player Ready",
+            "%c▶️ Hero video playing WITH SOUND",
             "color: #ff9edb; font-weight: bold;",
           );
-
-          const savedVol = localStorage.getItem("videoVolume") || "30";
-          event.target.setVolume(parseInt(savedVol));
         },
       },
     });
   };
 }
 
+// Export
 window.initHero = initHero;
+window.initHeroVideo = initHeroVideo; //

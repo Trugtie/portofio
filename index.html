@@ -11,6 +11,20 @@
 </head>
 
 <body>
+    <!-- PRELOADER -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="sakura-loader">🌸</div>
+            <h2>Chào mừng đến với thế giới của Linh</h2>
+            <button id="preloader-start-btn" class="preloader-start-btn">BẮT ĐẦU 🌸</button>
+            <div id="progress-container" class="progress-container hidden">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <span id="progress-text" class="progress-text">Đang tải... 0%</span>
+            </div>
+        </div>
+    </div>
     <!-- NAVBAR -->
     <div id="navbar"></div>
     <!-- SETTINGS MODAL -->
@@ -237,6 +251,7 @@
             </div>
         </div>
     </div>
+    <script src="./Assets/js/preloader.js"></script>
     <script src="./Assets/js/back-to-top.js"></script>
     <script src="./Assets/js/navbar.js"></script>
     <script src="./Assets/js/music-player.js"></script>
