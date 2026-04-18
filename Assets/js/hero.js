@@ -19,7 +19,6 @@ const heroConfig = {
 };
 
 function initHero() {
-  console.log("%c ✅ Hero content rendered 🌸", "color: #ff9edb;");
   renderHeroContent();
 }
 
@@ -59,11 +58,6 @@ function renderHeroContent() {
 function initHeroVideo() {
   if (heroPlayer) return;
 
-  console.log(
-    "%c🎥 Creating Hero Background Video with sound...",
-    "color: #ff9edb;",
-  );
-
   if (typeof YT === "undefined" && !window.youtubeAPILoaded) {
     window.youtubeAPILoaded = true;
     const tag = document.createElement("script");
@@ -91,11 +85,6 @@ function initHeroVideo() {
           const savedVol = localStorage.getItem("videoVolume") || "40";
           event.target.setVolume(parseInt(savedVol));
           event.target.playVideo();
-
-          console.log(
-            "%c▶️ Hero video playing WITH SOUND",
-            "color: #ff9edb; font-weight: bold;",
-          );
         },
       },
     });
