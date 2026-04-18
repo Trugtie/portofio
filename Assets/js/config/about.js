@@ -1,4 +1,4 @@
-// ====================== ABOUT CONFIG ======================
+// ====================== ABOUT CONFIG WITH PREVIEW ======================
 // Assets/js/config/about.js
 
 window.ConfigAbout = {
@@ -31,8 +31,9 @@ window.ConfigAbout = {
   hobbiesData: [],
 
   init() {
-    console.log("%c✅ About module initialized", "color: #ff9edb");
+    console.log("%c✅ About module initialized with Preview", "color: #ff9edb");
     this.resetToDefault();
+    this.bindPreviewListeners();
   },
 
   resetToDefault() {
@@ -43,12 +44,76 @@ window.ConfigAbout = {
     }));
   },
 
+  bindPreviewListeners() {
+    // Profile Image Preview
+    const profileInput = document.getElementById("about-profile-image");
+    if (profileInput)
+      profileInput.addEventListener("input", () => this.updateProfilePreview());
+
+    // About Me Background Preview
+    const aboutBgInput = document.getElementById("about-me-bg");
+    if (aboutBgInput)
+      aboutBgInput.addEventListener("input", () =>
+        this.updateAboutMeBgPreview(),
+      );
+
+    // Hobby Background Preview
+    const hobbyBgInput = document.getElementById("hobby-bg");
+    if (hobbyBgInput)
+      hobbyBgInput.addEventListener("input", () => this.updateHobbyBgPreview());
+  },
+
+  // ====================== PREVIEWS ======================
+  updateProfilePreview() {
+    const url = document.getElementById("about-profile-image").value.trim();
+    const container = document.getElementById("profile-image-preview");
+    if (!container) return;
+
+    if (url) {
+      container.innerHTML = `
+        <p style="margin-bottom:8px; font-weight:600; color:#6b4e9e;">Profile Preview:</p>
+        <img src="${url}" style="max-width:100%; max-height:220px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.2); object-fit:contain;" 
+             onerror="this.style.display='none'; this.parentElement.innerHTML += '<p style=\'color:#ff6b6b;text-align:center;\'>❌ Không tải được ảnh</p>'">
+      `;
+    } else {
+      container.innerHTML = `<p style="color:#888; text-align:center;">Chưa có URL ảnh</p>`;
+    }
+  },
+
+  updateAboutMeBgPreview() {
+    const url = document.getElementById("about-me-bg").value.trim();
+    const container = document.getElementById("aboutme-bg-preview");
+    if (!container) return;
+
+    container.style.backgroundImage = url ? `url('${url}')` : "none";
+    container.innerHTML = url
+      ? `<p style="background:rgba(0,0,0,0.5); color:white; padding:6px 12px; border-radius:8px; font-size:0.9rem;">About Me Background</p>`
+      : `<p style="color:#888; text-align:center;">Chưa có background</p>`;
+  },
+
+  updateHobbyBgPreview() {
+    const url = document.getElementById("hobby-bg").value.trim();
+    const container = document.getElementById("hobby-bg-preview");
+    if (!container) return;
+
+    container.style.backgroundImage = url ? `url('${url}')` : "none";
+    container.innerHTML = url
+      ? `<p style="background:rgba(0,0,0,0.5); color:white; padding:6px 12px; border-radius:8px; font-size:0.9rem;">Hobby Background</p>`
+      : `<p style="color:#888; text-align:center;">Chưa có background</p>`;
+  },
+
   render() {
     this.loadDefaultToForm();
     this.renderHobbyList();
+    // Cập nhật preview sau khi render
+    setTimeout(() => {
+      this.updateProfilePreview();
+      this.updateAboutMeBgPreview();
+      this.updateHobbyBgPreview();
+    }, 100);
   },
 
-  // ====================== SAVE ======================
+  // ====================== SAVE & LOAD (giữ nguyên logic cũ) ======================
   save() {
     const hobbies = [];
     const hobbyStyles = [];
@@ -85,7 +150,6 @@ window.ConfigAbout = {
     };
   },
 
-  // ====================== LOAD ======================
   load(data) {
     if (!data) {
       this.resetToDefault();
@@ -94,7 +158,6 @@ window.ConfigAbout = {
       return;
     }
 
-    // Load các trường cơ bản
     document.getElementById("about-text").value =
       data.aboutText || this.defaultData.aboutText;
     document.getElementById("about-profile-image").value =
@@ -106,7 +169,6 @@ window.ConfigAbout = {
       document.getElementById("hobby-bg").value =
         data.hobbyBg || this.defaultData.hobbyBg;
 
-    // Load hobby list
     if (Array.isArray(data.hobbies) && data.hobbies.length > 0) {
       this.hobbiesData = data.hobbies.map((text, i) => ({
         text: text,
@@ -143,12 +205,10 @@ window.ConfigAbout = {
     if (!container) return;
 
     let html = "";
-
     this.hobbiesData.forEach((item, index) => {
       html += `
         <div class="hobby-item" style="border: 2px solid var(--accent); padding: 16px; margin-bottom: 16px; border-radius: 12px; background: rgba(255,255,255,0.6);">
           <input type="text" class="config-input hobby-text" value="${item.text}" style="width: 100%; margin-bottom: 12px;" placeholder="Tên hobby">
-
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div>
               <label>Background Color</label>
@@ -165,9 +225,7 @@ window.ConfigAbout = {
               </div>
             </div>
           </div>
-
-          <button class="config-btn secondary" onclick="ConfigManager.modules.about.removeHobby(${index})" 
-                  style="margin-top: 12px; background:#ff6b6b; color:white;">Xóa Hobby</button>
+          <button class="config-btn secondary" onclick="ConfigManager.modules.about.removeHobby(${index})" style="margin-top: 12px; background:#ff6b6b; color:white;">Xóa Hobby</button>
         </div>
       `;
     });
@@ -175,7 +233,6 @@ window.ConfigAbout = {
     container.innerHTML =
       html ||
       `<p style="opacity:0.6; text-align:center; padding:50px;">Chưa có hobby nào</p>`;
-
     this.bindColorSync();
   },
 
@@ -186,24 +243,25 @@ window.ConfigAbout = {
       const borderPicker = item.querySelector(".hobby-border-color");
       const borderInput = item.querySelector(".hobby-border");
 
-      // Background color sync
       if (colorPicker && textInput) {
-        colorPicker.addEventListener("input", () => {
-          textInput.value = colorPicker.value;
-        });
-        textInput.addEventListener("input", () => {
-          colorPicker.value = textInput.value;
-        });
+        colorPicker.addEventListener(
+          "input",
+          () => (textInput.value = colorPicker.value),
+        );
+        textInput.addEventListener(
+          "input",
+          () => (colorPicker.value = textInput.value),
+        );
       }
-
-      // Border color sync
       if (borderPicker && borderInput) {
-        borderPicker.addEventListener("input", () => {
-          borderInput.value = borderPicker.value;
-        });
-        borderInput.addEventListener("input", () => {
-          borderPicker.value = borderInput.value;
-        });
+        borderPicker.addEventListener(
+          "input",
+          () => (borderInput.value = borderPicker.value),
+        );
+        borderInput.addEventListener(
+          "input",
+          () => (borderPicker.value = borderInput.value),
+        );
       }
     });
   },

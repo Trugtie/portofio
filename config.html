@@ -251,15 +251,23 @@
                     <p style="opacity: 0.7; margin-bottom: 40px;">Thay đổi nội dung About Me và quản lý Hobby List +
                         Style</p>
 
-                    <!-- About Me -->
+                    <!-- About Me Text -->
                     <div class="config-group">
                         <label for="about-text">About Me Text (Nội dung giới thiệu)</label>
                         <textarea id="about-text" class="config-textarea" rows="6"></textarea>
                     </div>
 
-                    <div class="config-group">
-                        <label for="about-profile-image">Profile Image URL (Avatar)</label>
-                        <input type="text" id="about-profile-image" class="config-input">
+                    <!-- Profile Image với Preview -->
+                    <div class="config-group"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
+                        <div>
+                            <label for="about-profile-image">Profile Image URL (Avatar)</label>
+                            <input type="text" id="about-profile-image" class="config-input">
+                        </div>
+                        <div id="profile-image-preview"
+                            style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 12px; border: 2px dashed var(--accent); min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                            <!-- JS sẽ tạo preview -->
+                        </div>
                     </div>
 
                     <hr style="margin: 40px 0; border-color: var(--border);">
@@ -277,15 +285,29 @@
                         + Thêm Hobby Mới
                     </button>
 
-                    <!-- Background Images -->
-                    <div class="config-group">
-                        <label for="about-me-bg">About Me Card Background Image</label>
-                        <input type="text" id="about-me-bg" class="config-input">
+                    <!-- Background Images với Preview -->
+                    <div class="config-group"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
+                        <div>
+                            <label for="about-me-bg">About Me Card Background Image</label>
+                            <input type="text" id="about-me-bg" class="config-input">
+                        </div>
+                        <div id="aboutme-bg-preview"
+                            style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 12px; border: 2px dashed var(--accent); min-height: 160px; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center;">
+                            <!-- JS sẽ tạo preview -->
+                        </div>
                     </div>
 
-                    <div class="config-group">
-                        <label for="hobby-bg">Hobby Card Background Image</label>
-                        <input type="text" id="hobby-bg" class="config-input">
+                    <div class="config-group"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
+                        <div>
+                            <label for="hobby-bg">Hobby Card Background Image</label>
+                            <input type="text" id="hobby-bg" class="config-input">
+                        </div>
+                        <div id="hobby-bg-preview"
+                            style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 12px; border: 2px dashed var(--accent); min-height: 160px; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center;">
+                            <!-- JS sẽ tạo preview -->
+                        </div>
                     </div>
                 </div>
             </div>
