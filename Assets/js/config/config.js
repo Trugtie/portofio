@@ -12,15 +12,11 @@ const ConfigManager = {
   useFirebase: true,
 
   init() {
-   
-
     this.loadAllModules();
     this.bindTabNavigation();
     this.bindGlobalButtons();
     this.loadSavedConfig();
     this.showTab("general");
-
-   
   },
 
   loadAllModules() {
@@ -68,9 +64,9 @@ const ConfigManager = {
     document
       .getElementById("btn-save-all")
       .addEventListener("click", () => this.saveAllConfig());
-    document.getElementById("btn-reset").addEventListener("click", () => {
-      if (confirm("Reset tất cả về mặc định?")) this.resetAllConfig();
-    });
+    // document.getElementById("btn-reset").addEventListener("click", () => {
+    //   if (confirm("Reset tất cả về mặc định?")) this.resetAllConfig();
+    // });
   },
 
   saveAllConfig() {
