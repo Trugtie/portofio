@@ -1,0 +1,383 @@
+<!-- FILE: config.html -->
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config Nội Dung - Linh Portfolio</title>
+    <link rel="stylesheet" href="./Assets/css/style.css">
+    <link rel="stylesheet" href="./Assets/css/config.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="config-container">
+        <!-- Sidebar -->
+        <div class="config-sidebar">
+            <div class="config-logo">Linh Config</div>
+            <nav class="config-nav">
+                <a href="#" class="config-nav-item active" data-tab="general">General</a>
+                <a href="#" class="config-nav-item" data-tab="hero">Hero Section</a>
+                <a href="#" class="config-nav-item" data-tab="about">About & Hobby</a>
+                <a href="#" class="config-nav-item" data-tab="gaming">Gaming Zone</a>
+                <a href="#" class="config-nav-item" data-tab="fan">Fan Gallery</a>
+                <a href="#" class="config-nav-item" data-tab="gallery">Gallery</a>
+                <a href="#" class="config-nav-item" data-tab="music">Music & Audio</a>
+            </nav>
+            <div class="config-actions">
+                <button id="btn-save-all" class="config-btn primary">💾 Lưu Tất Cả Thay Đổi</button>
+                <button id="btn-reset" class="config-btn secondary">Reset về mặc định</button>
+                <a href="./index.html" class="config-btn back-home">← Quay về Trang Chủ</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="config-main">
+            <div class="config-header">
+                <h1>Quản lý nội dung website</h1>
+                <p>Thay đổi nội dung, hình ảnh, video, màu sắc mà không cần code</p>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="tab-general" class="config-tab active">
+                <div class="config-form">
+                    <h2>General & CSS Variables</h2>
+                    <p style="opacity: 0.7; margin-bottom: 40px;">Thay đổi các biến toàn cục ảnh hưởng đến toàn website
+                    </p>
+
+                    <!-- Site Info -->
+                    <div class="config-group">
+                        <label for="site-title">Tên Website (Title Tag)</label>
+                        <input type="text" id="site-title" class="config-input" value="Linh | Digital Artist & Gamer">
+                    </div>
+
+                    <div class="config-group">
+                        <label for="logo-text">Logo Text</label>
+                        <input type="text" id="logo-text" class="config-input" value="Linh" maxlength="12">
+                    </div>
+
+                    <hr style="margin: 40px 0; border-color: var(--border);">
+
+                    <!-- Color Variables -->
+                    <h3>Màu sắc chính</h3>
+
+                    <div class="config-group">
+                        <label for="primary-color">--primary</label>
+                        <div class="color-picker">
+                            <input type="color" id="primary-color" value="#ff9edb">
+                            <input type="text" id="primary-color-text" class="config-input" value="#ff9edb"
+                                style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label for="primary-hover">--primary-hover</label>
+                        <div class="color-picker">
+                            <input type="color" id="primary-hover" value="#ffb5e8">
+                            <input type="text" id="primary-hover-text" class="config-input" value="#ffb5e8"
+                                style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label for="accent-color">--accent</label>
+                        <div class="color-picker">
+                            <input type="color" id="accent-color" value="#e0bbff">
+                            <input type="text" id="accent-color-text" class="config-input" value="#e0bbff"
+                                style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label for="highlight-color">--highlight / --sakura</label>
+                        <div class="color-picker">
+                            <input type="color" id="highlight-color" value="#ff9edb">
+                            <input type="text" id="highlight-color-text" class="config-input" value="#ff9edb"
+                                style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label for="text-dark">--text-dark</label>
+                        <div class="color-picker">
+                            <input type="color" id="text-dark" value="#6b4e9e">
+                            <input type="text" id="text-dark-text" class="config-input" value="#6b4e9e"
+                                style="flex: 1;">
+                        </div>
+                    </div>
+
+                    <hr style="margin: 40px 0; border-color: var(--border);">
+
+                    <!-- Backgrounds -->
+                    <h3>Backgrounds & Overlays</h3>
+
+                    <!-- bg-body Light -->
+                    <div class="config-group">
+                        <label>--bg-body (Light Mode)</label>
+                        <div class="color-picker" style="gap: 8px;">
+                            <input type="color" id="bg-body-color1" value="#f8f1eb" style="width: 70px;">
+                            <input type="color" id="bg-body-color2" value="#f0e6ff" style="width: 70px;">
+                            <input type="color" id="bg-body-color3" value="#fdf4f8" style="width: 70px;">
+                        </div>
+                        <input type="text" id="bg-body" class="config-input" readonly>
+                    </div>
+
+                    <!-- bg-body Dark -->
+                    <div class="config-group">
+                        <label>--bg-body (Dark Mode)</label>
+                        <div class="color-picker" style="gap: 8px;">
+                            <input type="color" id="bg-body-dark-color1" value="#1a0f2e" style="width: 70px;">
+                            <input type="color" id="bg-body-dark-color2" value="#2d1b4a" style="width: 70px;">
+                            <input type="color" id="bg-body-dark-color3" value="#1f1438" style="width: 70px;">
+                        </div>
+                        <input type="text" id="bg-body-dark" class="config-input" readonly>
+                    </div>
+
+                    <!-- bg-navbar -->
+                    <div class="config-group">
+                        <label for="bg-navbar">--bg-navbar</label>
+                        <div class="color-picker">
+                            <input type="color" id="bg-navbar-color" value="#000000">
+                            <input type="text" id="bg-navbar" class="config-input" value="rgba(0, 0, 0, 0.2)"
+                                style="flex: 1;">
+                        </div>
+                    </div>
+                    <!-- preloader-bg -->
+                    <div class="config-group">
+                        <label>--preloader-bg</label>
+                        <div class="color-picker" style="gap: 8px;">
+                            <input type="color" id="preloader-color1" value="#1a0f2e" style="width: 70px;">
+                            <input type="color" id="preloader-color2" value="#2d1b4a" style="width: 70px;">
+                            <input type="color" id="preloader-color3" value="#1f1438" style="width: 70px;">
+                        </div>
+                        <input type="text" id="preloader-bg" class="config-input" readonly>
+                    </div>
+                    <!-- Default Theme -->
+                    <div class="config-group">
+                        <label>Chế độ mặc định</label>
+                        <select id="default-theme" class="config-input">
+                            <option value="light">Light Mode</option>
+                            <option value="dark">Dark Mode</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-hero" class="config-tab">
+                <div class="config-form">
+                    <h2>Hero Section Settings</h2>
+                    <p style="opacity: 0.7; margin-bottom: 40px;">Thay đổi nội dung, video background và hình ảnh chính
+                        của Hero</p>
+
+                    <!-- YouTube Background -->
+                    <div class="config-group">
+                        <label for="hero-youtube">YouTube Video ID (Background)</label>
+                        <input type="text" id="hero-youtube" class="config-input" value="F_Co6qvNsUY"
+                            placeholder="Ví dụ: F_Co6qvNsUY">
+                        <small style="color: #888;">Dán ID video YouTube (không phải link đầy đủ)</small>
+                    </div>
+
+                    <!-- Badge -->
+                    <div class="config-group">
+                        <label for="hero-badge-icon">Badge Icon (Emoji)</label>
+                        <input type="text" id="hero-badge-icon" class="config-input" value="🎨" maxlength="5">
+                    </div>
+
+                    <div class="config-group">
+                        <label for="hero-badge-text">Badge Text</label>
+                        <input type="text" id="hero-badge-text" class="config-input" value="Digital Artist & Gamer">
+                    </div>
+
+                    <!-- Title -->
+                    <div class="config-group">
+                        <label for="hero-title-prefix">Title Prefix ("Hi, I'm ")</label>
+                        <input type="text" id="hero-title-prefix" class="config-input" value="Hi, I'm ">
+                    </div>
+
+                    <div class="config-group">
+                        <label for="hero-title-highlight">Tên Highlight ("Linh")</label>
+                        <input type="text" id="hero-title-highlight" class="config-input" value="Linh">
+                    </div>
+
+                    <!-- Subtitle -->
+                    <div class="config-group">
+                        <label for="hero-subtitle">Subtitle (Mô tả ngắn)</label>
+                        <textarea id="hero-subtitle" class="config-textarea"
+                            rows="3">Chào mừng bạn đến với thế giới của tôi — nơi nghệ thuật kỹ thuật số gặp gỡ gaming và những giấc mơ màu hồng.</textarea>
+                    </div>
+
+                    <!-- Hero Image -->
+                    <div class="config-group">
+                        <label for="hero-image">Hero Image URL</label>
+                        <input type="text" id="hero-image" class="config-input" value="./Assets/Images/animegirl.png">
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="config-group">
+                        <label>Button 1 (Primary)</label>
+                        <input type="text" id="btn1-text" class="config-input" value="View My Works"
+                            style="margin-bottom: 8px;">
+                        <input type="text" id="btn1-link" class="config-input" value="#gallery"
+                            placeholder="Link (#gallery hoặc URL)">
+                    </div>
+
+                    <div class="config-group">
+                        <label>Button 2 (Secondary)</label>
+                        <input type="text" id="btn2-text" class="config-input" value="Learn More About Me"
+                            style="margin-bottom: 8px;">
+                        <input type="text" id="btn2-link" class="config-input" value="#about"
+                            placeholder="Link (#about hoặc URL)">
+                    </div>
+                </div>
+            </div>
+            <div id="tab-about" class="config-tab">
+                <div class="config-form">
+                    <h2>About Section Settings</h2>
+                    <p style="opacity: 0.7; margin-bottom: 40px;">Thay đổi nội dung About Me và danh sách Hobby</p>
+
+                    <!-- About Me -->
+                    <div class="config-group">
+                        <label for="about-text">About Me Text (Nội dung giới thiệu)</label>
+                        <textarea id="about-text" class="config-textarea"
+                            rows="6">Linh là một Digital Artist & Gamer người Việt Nam yêu thích sự kết hợp giữa nghệ thuật anime và gaming. Tôi tạo ra những thiết kế hiện đại, trẻ trung với chút vibe Nhật Bản.</textarea>
+                    </div>
+
+                    <div class="config-group">
+                        <label for="about-profile-image">Profile Image URL (Avatar)</label>
+                        <input type="text" id="about-profile-image" class="config-input"
+                            value="./Assets/Images/Avatar.gif">
+                    </div>
+
+                    <hr style="margin: 40px 0; border-color: var(--border);">
+
+                    <!-- Hobby List -->
+                    <div class="config-group">
+                        <label>Hobby List (Mỗi dòng một hobby)</label>
+                        <textarea id="hobby-list" class="config-textarea" rows="8">Watching Anime
+Anime Drawing
+Cosplay
+League of Legends
+Gaming
+Chilling With Friends</textarea>
+                        <small style="color: #888;">Nhập mỗi hobby trên một dòng</small>
+                    </div>
+
+                    <!-- Background Images cho 2 card -->
+                    <div class="config-group">
+                        <label for="about-me-bg">About Me Card Background Image</label>
+                        <input type="text" id="about-me-bg" class="config-input"
+                            value="https://i.pinimg.com/736x/74/60/a1/7460a1cae8d0a02eb59933ddea60df29.jpg">
+                    </div>
+
+                    <div class="config-group">
+                        <label for="hobby-bg">Hobby Card Background Image</label>
+                        <input type="text" id="hobby-bg" class="config-input"
+                            value="https://i.pinimg.com/736x/a6/fe/52/a6fe52829cdcdeb359cb810445f45dbe.jpg">
+                    </div>
+                </div>
+            </div>
+            <div id="tab-gaming" class="config-tab">
+                <div class="config-form">
+                    <h2>Gaming Zone Settings</h2>
+                    <p style="opacity: 0.7; margin-bottom: 40px;">Quản lý các card Gaming (League, Genshin, TFT,
+                        Steam...)</p>
+
+                    <div id="gaming-cards-container">
+                        <!-- JS sẽ tự render các card gaming editable ở đây -->
+                    </div>
+
+                    <button id="add-gaming-card" class="config-btn primary"
+                        onclick="ConfigManager.modules.gaming.addNewCard()">
+                        + Thêm Card Gaming Mới
+                    </button>
+                </div>
+            </div>
+            <div id="tab-fan" class="config-tab">
+                <div class="config-form">
+                    <h2>Fan Gallery Settings</h2>
+                    <p style="opacity: 0.7; margin-bottom: 30px;">Quản lý các bộ bài (Deck) trong Fan Gallery</p>
+
+                    <div id="fan-decks-container">
+                        <!-- JS sẽ render các deck editable ở đây -->
+                    </div>
+
+                    <button id="add-fan-deck" class="config-btn primary"
+                        onclick="ConfigManager.modules.fan.addNewDeck()">
+                        + Thêm Bộ Bài (Deck) Mới
+                    </button>
+                </div>
+            </div>
+            <div id="tab-gallery" class="config-tab">
+                <div class="config-form">
+                    <h2>Main Gallery Settings</h2>
+                    <p style="opacity: 0.7; margin-bottom: 30px;">Quản lý các ảnh trong Gallery chính (Masonry Grid)</p>
+
+                    <div id="main-gallery-container">
+                        <!-- JS sẽ render danh sách ảnh editable ở đây -->
+                    </div>
+
+                    <button id="add-gallery-item" class="config-btn primary"
+                        onclick="ConfigManager.modules.gallery.addNewItem()">
+                        + Thêm Ảnh Mới vào Gallery
+                    </button>
+                </div>
+            </div>
+            <div id="tab-music" class="config-tab">
+                <div class="config-form">
+                    <h2>Music & Audio Settings</h2>
+                    <p style="opacity: 0.7; margin-bottom: 30px;">Cài đặt nhạc nền YouTube và âm lượng mặc định</p>
+
+                    <!-- Default Music -->
+                    <div class="config-group">
+                        <label for="default-music-id">YouTube Video ID (Nhạc mặc định)</label>
+                        <input type="text" id="default-music-id" class="config-input" value="dQw4w9wgxcq"
+                            placeholder="Ví dụ: dQw4w9wgxcq">
+                        <small style="color:#888;">ID video YouTube sẽ phát tự động khi vào trang</small>
+                    </div>
+
+                    <div class="config-group">
+                        <label for="default-music-title">Tên bài hát hiển thị (rút gọn)</label>
+                        <input type="text" id="default-music-title" class="config-input"
+                            value="Never Gonna Give You Up">
+                    </div>
+
+                    <!-- Default Volumes -->
+                    <div class="config-group">
+                        <label for="default-music-volume">Âm lượng Music mặc định (%)</label>
+                        <input type="range" id="default-music-volume" min="0" max="100" value="65"
+                            style="width:100%; accent-color: #ff9edb;">
+                        <span id="music-vol-value" style="font-weight:600; color:#ff9edb;">65%</span>
+                    </div>
+
+                    <div class="config-group">
+                        <label for="default-video-volume">Âm lượng Video Background Hero (%)</label>
+                        <input type="range" id="default-video-volume" min="0" max="100" value="30"
+                            style="width:100%; accent-color: #c084fc;">
+                        <span id="video-vol-value" style="font-weight:600; color:#c084fc;">30%</span>
+                    </div>
+
+                    <!-- Auto Play Option -->
+                    <div class="config-group">
+                        <label>Nhạc tự động phát khi vào trang?</label>
+                        <select id="music-autoplay" class="config-input">
+                            <option value="true">Có (Auto Play)</option>
+                            <option value="false">Không (Chỉ phát khi nhấn Play)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./Assets/js/firebaseinit.js"></script>
+    <script src="./Assets/js/config/firebase-config.js"></script>
+    <script src="./Assets/js/config/config.js"></script>
+    <script src="./Assets/js/config/general.js"></script>
+    <script src="./Assets/js/config/hero.js"></script>
+    <script src="./Assets/js/config/about.js"></script>
+    <script src="./Assets/js/config/gaming.js"></script>
+    <script src="./Assets/js/config/fan-gallery.js"></script>
+    <script src="./Assets/js/config/gallery.js"></script>
+    <script src="./Assets/js/config/music.js"></script>
+</body>
+
+</html>

@@ -1,4 +1,6 @@
-// Import the functions you need from the SDKs you need
+// ====================== FIREBASE INIT ======================
+// Assets/js/firebaseinit.js
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {
   getDatabase,
@@ -8,7 +10,7 @@ import {
   onValue,
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
 
-// Your web app's Firebase configuration
+// Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyBKpFZz7nZWzky1Wjb8NYM6-CDVrW4JLaY",
   authDomain: "jiahanportofio.firebaseapp.com",
@@ -18,23 +20,34 @@ const firebaseConfig = {
   appId: "1:615762014350:web:be81719276b541604c99df",
   measurementId: "G-FQ0W8SK3PV",
   databaseURL:
-    "https://jiahanportofio-default-rtdb.asia-southeast1.firebasedatabase.app", // Updated URL
+    "https://jiahanportofio-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Get a reference to the database
 const database = getDatabase(app);
 
-function incrementVisitorCount() {
-  const visitorCountRef = ref(database, "visitors/page_views");
+// === PUBLIC RA WINDOW ĐỂ CÁC FILE KHÁC DÙNG ĐƯỢC ===
+window.database = database;
+window.firebaseRef = ref;
+window.firebaseSet = set;
+window.firebaseGet = get;
+window.firebaseOnValue = onValue;
 
-  get(visitorCountRef)
+console.log(
+  "%c✅ Firebase Realtime Database initialized & fully exposed to window",
+  "color: #ff9edb; font-weight: bold;",
+);
+
+// Giữ nguyên chức năng visitor count
+function incrementVisitorCount() {
+  const visitorCountRef = window.firebaseRef(database, "visitors/page_views");
+  window
+    .firebaseGet(visitorCountRef)
     .then((snapshot) => {
       let count = snapshot.exists() ? snapshot.val() : 0;
       count++;
-      set(visitorCountRef, count);
+      window.firebaseSet(visitorCountRef, count);
     })
     .catch((error) => {
       console.error("Error incrementing visitor count:", error);
@@ -42,12 +55,12 @@ function incrementVisitorCount() {
 }
 
 function displayVisitorCount() {
-  const visitorCountRef = ref(database, "visitors/page_views");
+  const visitorCountRef = window.firebaseRef(database, "visitors/page_views");
   const visitorCountElement = document.querySelector("#visit-count");
 
-  onValue(visitorCountRef, (snapshot) => {
+  window.firebaseOnValue(visitorCountRef, (snapshot) => {
     const count = snapshot.val() || 0;
-    visitorCountElement.innerText = `${count}`;
+    if (visitorCountElement) visitorCountElement.innerText = `${count}`;
   });
 }
 
