@@ -23,7 +23,6 @@
                 <a href="#" class="config-nav-item" data-tab="gaming">Gaming Zone</a>
                 <a href="#" class="config-nav-item" data-tab="fan">Fan Gallery</a>
                 <a href="#" class="config-nav-item" data-tab="gallery">Gallery</a>
-                <a href="#" class="config-nav-item" data-tab="music">Music & Audio</a>
             </nav>
             <div class="config-actions">
                 <button id="btn-save-all" class="config-btn primary">💾 Lưu Tất Cả Thay Đổi</button>
@@ -357,50 +356,6 @@
                     </button>
                 </div>
             </div>
-            <div id="tab-music" class="config-tab">
-                <div class="config-form">
-                    <h2>Music & Audio Settings</h2>
-                    <p style="opacity: 0.7; margin-bottom: 30px;">Cài đặt nhạc nền YouTube và âm lượng mặc định</p>
-
-                    <!-- Default Music -->
-                    <div class="config-group">
-                        <label for="default-music-id">YouTube Video ID (Nhạc mặc định)</label>
-                        <input type="text" id="default-music-id" class="config-input" value="dQw4w9wgxcq"
-                            placeholder="Ví dụ: dQw4w9wgxcq">
-                        <small style="color:#888;">ID video YouTube sẽ phát tự động khi vào trang</small>
-                    </div>
-
-                    <div class="config-group">
-                        <label for="default-music-title">Tên bài hát hiển thị (rút gọn)</label>
-                        <input type="text" id="default-music-title" class="config-input"
-                            value="Never Gonna Give You Up">
-                    </div>
-
-                    <!-- Default Volumes -->
-                    <div class="config-group">
-                        <label for="default-music-volume">Âm lượng Music mặc định (%)</label>
-                        <input type="range" id="default-music-volume" min="0" max="100" value="65"
-                            style="width:100%; accent-color: #ff9edb;">
-                        <span id="music-vol-value" style="font-weight:600; color:#ff9edb;">65%</span>
-                    </div>
-
-                    <div class="config-group">
-                        <label for="default-video-volume">Âm lượng Video Background Hero (%)</label>
-                        <input type="range" id="default-video-volume" min="0" max="100" value="30"
-                            style="width:100%; accent-color: #c084fc;">
-                        <span id="video-vol-value" style="font-weight:600; color:#c084fc;">30%</span>
-                    </div>
-
-                    <!-- Auto Play Option -->
-                    <div class="config-group">
-                        <label>Nhạc tự động phát khi vào trang?</label>
-                        <select id="music-autoplay" class="config-input">
-                            <option value="true">Có (Auto Play)</option>
-                            <option value="false">Không (Chỉ phát khi nhấn Play)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <script type="module" src="./Assets/js/firebaseinit.js"></script>
@@ -412,7 +367,6 @@
     <script src="./Assets/js/config/gaming.js"></script>
     <script src="./Assets/js/config/fan-gallery.js"></script>
     <script src="./Assets/js/config/gallery.js"></script>
-    <script src="./Assets/js/config/music.js"></script>
 </body>
 
 </html>

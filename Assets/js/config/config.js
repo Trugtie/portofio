@@ -6,7 +6,6 @@ const ConfigManager = {
   gamingCards: [],
   fanDecks: [],
   galleryItems: [],
-  musicConfig: {},
 
   modules: {},
 
@@ -38,7 +37,6 @@ const ConfigManager = {
       gaming: window.ConfigGaming || {},
       fan: window.ConfigFanGallery || {},
       gallery: window.ConfigMainGallery || {},
-      music: window.ConfigMusic || {},
     };
 
     Object.values(this.modules).forEach((module) => {
