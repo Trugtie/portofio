@@ -1,12 +1,12 @@
 // ====================== ABOUT.JS ======================
-// Assets/js/about.js - Đồng bộ data từ ConfigMain
+// Assets/js/about.js - Đồng bộ đầy đủ từ ConfigMain (text + image + hobby + background)
 
 function initAbout() {
   console.log("%c📖 About init - Syncing from ConfigMain", "color: #ff9edb");
 
   renderAbout();
 
-  // Lắng nghe khi ConfigMain load hoặc cập nhật data
+  // Lắng nghe khi ConfigMain cập nhật data
   document.addEventListener("configMainReady", () => {
     console.log("%c🔄 ConfigMainReady - Re-rendering About", "color: #ff9edb");
     renderAbout();
@@ -16,7 +16,6 @@ function initAbout() {
 function renderAbout() {
   const data = ConfigMain.getAbout() || {};
 
-  // Dữ liệu mặc định nếu chưa có từ Config
   const aboutData = {
     title: "About Me",
     profileImage: data.profileImage || "./Assets/Images/Avatar.gif",
@@ -34,30 +33,52 @@ function renderAbout() {
           "Gaming",
           "Chilling With Friends",
         ],
+    hobbyStyles: Array.isArray(data.hobbyStyles) ? data.hobbyStyles : [],
+    aboutMeBg:
+      data.aboutMeBg ||
+      "https://i.pinimg.com/736x/74/60/a1/7460a1cae8d0a02eb59933ddea60df29.jpg",
+    hobbyBg:
+      data.hobbyBg ||
+      "https://i.pinimg.com/736x/a6/fe/52/a6fe52829cdcdeb359cb810445f45dbe.jpg",
   };
 
-  // Render About Me
+  // === Render About Me ===
   const aboutMeEl = document.getElementById("about-me-content");
   if (aboutMeEl) {
     aboutMeEl.innerHTML = `
       <h2 class="section-title">${aboutData.title}</h2>
-      
       <div class="profile-image-wrapper">
         <img src="${aboutData.profileImage}" 
              alt="${aboutData.alt}" 
              class="profile-image">
       </div>
-      
       <p class="about-text">${aboutData.text}</p>
     `;
+
+    // Đồng bộ background cho .about-me
+    const aboutSection = aboutMeEl.closest(".about-me");
+    if (aboutSection) {
+      aboutSection.style.backgroundImage = `url("${aboutData.aboutMeBg}")`;
+    }
   }
 
-  // Render Hobby
+  // === Render Hobby ===
   const hobbyEl = document.getElementById("hobby-content");
   if (hobbyEl) {
-    const hobbyHTML = aboutData.hobbies
-      .map((hobby) => `<div class="hobby-badge">${hobby}</div>`)
-      .join("");
+    let hobbyHTML = "";
+
+    aboutData.hobbies.forEach((hobby, index) => {
+      const style = aboutData.hobbyStyles[index] || {};
+      const background =
+        style.background || "linear-gradient(135deg, #ff9edb, #ff6ec4)";
+      const borderColor = style.borderColor || "#ff9edb";
+
+      hobbyHTML += `
+        <div class="hobby-badge" style="background: ${background}; border-color: ${borderColor};">
+          ${hobby}
+        </div>
+      `;
+    });
 
     hobbyEl.innerHTML = `
       <h2 class="section-title">Hobby</h2>
@@ -65,9 +86,18 @@ function renderAbout() {
         ${hobbyHTML}
       </div>
     `;
+
+    // Đồng bộ background cho .hobby-section
+    const hobbySection = hobbyEl.closest(".hobby-section");
+    if (hobbySection) {
+      hobbySection.style.backgroundImage = `url("${aboutData.hobbyBg}")`;
+    }
   }
 
-  console.log("%c✅ About section rendered from ConfigMain", "color: #ff9edb");
+  console.log(
+    "%c✅ About section fully synced from ConfigMain (including backgrounds)",
+    "color: #ff9edb",
+  );
 }
 
 // Export

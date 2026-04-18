@@ -711,32 +711,6 @@ html {
   overflow: hidden;
 }
 
-/* Multi-color hobby badges */
-.hobby-badge:nth-child(1) {
-  background: linear-gradient(135deg, #ff9edb, #ff6ec4);
-  border-color: #ff9edb;
-}
-.hobby-badge:nth-child(2) {
-  background: linear-gradient(135deg, #c79fff, #a46dff);
-  border-color: #c79fff;
-}
-.hobby-badge:nth-child(3) {
-  background: linear-gradient(135deg, #9be4ff, #5ab8ff);
-  border-color: #9be4ff;
-}
-.hobby-badge:nth-child(4) {
-  background: linear-gradient(135deg, #ffcc80, #ff9e40);
-  border-color: #ffcc80;
-}
-.hobby-badge:nth-child(5) {
-  background: linear-gradient(135deg, #b5ff9e, #7be85e);
-  border-color: #b5ff9e;
-}
-.hobby-badge:nth-child(6) {
-  background: linear-gradient(135deg, #ff9edb, #e0bbff);
-  border-color: #ff9edb;
-}
-
 .hobby-badge:hover {
   transform: translateY(-8px) scale(1.05);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
