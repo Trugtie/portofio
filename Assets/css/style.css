@@ -925,7 +925,7 @@ html {
   padding: 8px 18px;
   border-radius: 50px;
   font-size: 0.97rem;
-  border: 1px solid rgba(255, 158, 219, 0.3);
+  border: 1px solid color-mix(in srgb, var(--accent-color) 30%, transparent);
 }
 
 .stats-grid {
@@ -951,7 +951,7 @@ html {
   font-style: italic;
   margin-top: auto;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 158, 219, 0.25);
+  border-top: 1px solid color-mix(in srgb, var(--accent-color) 25%, transparent);
 }
 
 .game-title {
