@@ -1,9 +1,12 @@
-// ====================== GAMING CONFIG ======================
+// ====================== GAMING CONFIG WITH FIXED MEDIA PREVIEW ======================
 // Assets/js/config/gaming.js
 
 window.ConfigGaming = {
   init() {
-    console.log("%c✅ Gaming module initialized", "color: #ff9edb");
+    console.log(
+      "%c✅ Gaming module initialized with Fixed Media Preview",
+      "color: #ff9edb",
+    );
     this.ensureDefaultData();
   },
 
@@ -22,7 +25,7 @@ window.ConfigGaming = {
           playstyle: "Jungle — Chuyên Briar và tướng sát thủ",
           favoriteChamps: ["Briar", "Jinx", "Pantheon"],
           media:
-            "https://media.discordapp.net/attachments/925810547931365386/1494410718433509447/IMG_2401.jpg?ex=69e281f0&is=69e13070&hm=7db4d799ab1b7e21c5997728160513c104b5d07b97ff51311d7f911f49cf3e5e&=&format=webp&width=448&height=793",
+            "https://media.discordapp.net/attachments/925810547931365386/1494410718433509447/IMG_2401.jpg",
           accentColor: "#ff9edb",
           cardColor: "#ff9edb4b",
         },
@@ -87,10 +90,13 @@ window.ConfigGaming = {
             .map(
               (champ, cIndex) => `
             <div style="display:flex; gap:8px; margin-bottom:6px;">
-              <input type="text" class="config-input gaming-input" data-index="${index}" data-champ-index="${cIndex}" data-field="favoriteChamps" value="${champ}" style="flex:1;">
-              <button class="config-btn secondary" onclick="ConfigManager.modules.gaming.removeFavoriteChamp(${index}, ${cIndex})" style="background:#ff6b6b;color:white;padding:0 12px;">X</button>
-            </div>
-          `,
+              <input type="text" class="config-input gaming-input" 
+                     data-index="${index}" data-champ-index="${cIndex}" data-field="favoriteChamps" 
+                     value="${champ}" style="flex:1;">
+              <button class="config-btn secondary" 
+                      onclick="ConfigManager.modules.gaming.removeFavoriteChamp(${index}, ${cIndex})" 
+                      style="background:#ff6b6b;color:white;padding:0 12px;">X</button>
+            </div>`,
             )
             .join("")
         : "";
@@ -117,15 +123,24 @@ window.ConfigGaming = {
 
           <div style="margin-top:15px;">
             <label>Favorite Champs</label>
-            <div id="favorite-champs-container-${index}">
-              ${champsHTML}
-            </div>
+            <div id="favorite-champs-container-${index}">${champsHTML}</div>
             <button class="config-btn secondary" onclick="ConfigManager.modules.gaming.addFavoriteChamp(${index})" style="margin-top:8px;">+ Thêm Champion</button>
           </div>
 
-          <div style="margin-top:15px;">
-            <label>Media URL</label>
-            <input type="text" class="config-input gaming-input" data-index="${index}" data-field="media" value="${card.media || ""}" style="width:100%;">
+          <!-- Media URL + Preview (Fixed) -->
+          <div style="margin-top:20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
+            <div>
+              <label>Media URL (Ảnh Card)</label>
+              <input type="text" class="config-input gaming-input" 
+                     data-index="${index}" data-field="media" 
+                     value="${card.media || ""}" style="width:100%;">
+            </div>
+            <div id="media-preview-${index}" 
+                 style="background: rgba(255,255,255,0.7); padding: 12px; border-radius: 12px; 
+                        border: 2px dashed var(--accent); min-height: 180px; display: flex; 
+                        align-items: center; justify-content: center; overflow: hidden;">
+              <!-- Preview -->
+            </div>
           </div>
 
           <!-- Color Pickers -->
@@ -146,76 +161,115 @@ window.ConfigGaming = {
             </div>
           </div>
 
-          <button class="config-btn secondary" onclick="ConfigManager.modules.gaming.removeCard(${index})" style="margin-top:15px;background:#ff6b6b;color:white;">Xóa Card</button>
+          <button class="config-btn secondary" onclick="ConfigManager.modules.gaming.removeCard(${index})" 
+                  style="margin-top:15px;background:#ff6b6b;color:white;">Xóa Card</button>
         </div>`;
     });
 
     container.innerHTML = html;
+
     this.bindInputEvents();
     this.bindColorSync();
+    this.bindMediaPreviewListeners();
+
+    // Force update all previews after render
+    setTimeout(() => {
+      ConfigManager.gamingCards.forEach((_, index) =>
+        this.updateMediaPreview(index),
+      );
+    }, 300);
   },
 
+  // ====================== FIXED MEDIA PREVIEW ======================
+  bindMediaPreviewListeners() {
+    document
+      .querySelectorAll('.gaming-input[data-field="media"]')
+      .forEach((input) => {
+        input.addEventListener("input", () => {
+          const index = parseInt(input.dataset.index);
+          this.updateMediaPreview(index);
+        });
+      });
+  },
+
+  updateMediaPreview(index) {
+    const input = document.querySelector(
+      `.gaming-input[data-index="${index}"][data-field="media"]`,
+    );
+    const container = document.getElementById(`media-preview-${index}`);
+    if (!input || !container) return;
+
+    const url = input.value.trim();
+
+    if (!url) {
+      container.innerHTML = `<p style="color:#888; text-align:center; padding:20px;">Chưa có URL ảnh</p>`;
+      return;
+    }
+
+    container.innerHTML = `
+      <img src="${url}" 
+           style="max-width:100%; max-height:220px; border-radius:12px; box-shadow:0 8px 25px rgba(0,0,0,0.2); object-fit:contain;" 
+           onerror="this.style.display='none'; 
+                    this.parentElement.innerHTML = '<p style=\'color:#ff6b6b; text-align:center; padding:20px;\'>❌ Không tải được ảnh<br><small>URL có thể bị chặn hoặc không tồn tại</small></p>'">
+    `;
+  },
+
+  // Các hàm còn lại giữ nguyên (bindInputEvents, bindColorSync, add/remove functions, save, load)
   bindInputEvents() {
     document.querySelectorAll(".gaming-input").forEach((input) => {
       input.addEventListener("change", (e) => {
         const i = parseInt(e.target.dataset.index);
         const f = e.target.dataset.field;
-        if (ConfigManager.gamingCards && ConfigManager.gamingCards[i]) {
-          if (f === "favoriteChamps") {
-            // Không dùng cho favorite vì dùng cách riêng
-          } else {
-            ConfigManager.gamingCards[i][f] = e.target.value.trim();
-          }
+        if (
+          ConfigManager.gamingCards &&
+          ConfigManager.gamingCards[i] &&
+          f !== "favoriteChamps"
+        ) {
+          ConfigManager.gamingCards[i][f] = e.target.value.trim();
         }
       });
     });
   },
 
   bindColorSync() {
+    // Accent
     document.querySelectorAll(".accent-picker").forEach((picker) => {
       const index = parseInt(picker.dataset.index);
-      const textInput = picker.parentElement.querySelector(".accent-text");
-
+      const text = picker.parentElement.querySelector(".accent-text");
       picker.addEventListener("input", () => {
-        if (textInput) textInput.value = picker.value;
+        if (text) text.value = picker.value;
         if (ConfigManager.gamingCards[index])
           ConfigManager.gamingCards[index].accentColor = picker.value;
       });
-
-      if (textInput) {
-        textInput.addEventListener("input", () => {
-          picker.value = textInput.value;
+      if (text)
+        text.addEventListener("input", () => {
+          picker.value = text.value;
           if (ConfigManager.gamingCards[index])
-            ConfigManager.gamingCards[index].accentColor = textInput.value;
+            ConfigManager.gamingCards[index].accentColor = text.value;
         });
-      }
     });
 
+    // Card Color
     document.querySelectorAll(".card-picker").forEach((picker) => {
       const index = parseInt(picker.dataset.index);
-      const textInput = picker.parentElement.querySelector(".card-text");
-
+      const text = picker.parentElement.querySelector(".card-text");
       picker.addEventListener("input", () => {
-        if (textInput) textInput.value = picker.value;
+        if (text) text.value = picker.value;
         if (ConfigManager.gamingCards[index])
           ConfigManager.gamingCards[index].cardColor = picker.value;
       });
-
-      if (textInput) {
-        textInput.addEventListener("input", () => {
-          picker.value = textInput.value;
+      if (text)
+        text.addEventListener("input", () => {
+          picker.value = text.value;
           if (ConfigManager.gamingCards[index])
-            ConfigManager.gamingCards[index].cardColor = textInput.value;
+            ConfigManager.gamingCards[index].cardColor = text.value;
         });
-      }
     });
   },
 
-  // ==================== FAVORITE CHAMPS ====================
   addFavoriteChamp(cardIndex) {
-    if (!ConfigManager.gamingCards[cardIndex].favoriteChamps) {
+    if (!ConfigManager.gamingCards[cardIndex].favoriteChamps)
       ConfigManager.gamingCards[cardIndex].favoriteChamps = [];
-    }
     ConfigManager.gamingCards[cardIndex].favoriteChamps.push("New Champion");
     this.render();
   },
@@ -261,9 +315,7 @@ window.ConfigGaming = {
 
   load(data) {
     ConfigManager.gamingCards = Array.isArray(data) ? data : [];
-    if (ConfigManager.gamingCards.length === 0) {
-      this.ensureDefaultData();
-    }
+    if (ConfigManager.gamingCards.length === 0) this.ensureDefaultData();
     this.render();
   },
 };
