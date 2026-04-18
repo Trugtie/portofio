@@ -87,6 +87,9 @@ const ConfigMain = {
   getMusicConfig() {
     return this.musicConfig;
   },
+  getSocialLinks() {
+    return this.general.socialLinks || [];
+  }
 };
 
 // Khởi tạo tự động

@@ -39,6 +39,7 @@
             </div>
 
             <!-- Tab Contents -->
+            <!-- ==================== TAB GENERAL FULL CODE ==================== -->
             <div id="tab-general" class="config-tab active">
                 <div class="config-form">
                     <h2>General & CSS Variables</h2>
@@ -111,7 +112,6 @@
                     <!-- Backgrounds -->
                     <h3>Backgrounds & Overlays</h3>
 
-                    <!-- bg-body Light -->
                     <div class="config-group">
                         <label>--bg-body (Light Mode)</label>
                         <div class="color-picker" style="gap: 8px;">
@@ -122,7 +122,6 @@
                         <input type="text" id="bg-body" class="config-input" readonly>
                     </div>
 
-                    <!-- bg-body Dark -->
                     <div class="config-group">
                         <label>--bg-body (Dark Mode)</label>
                         <div class="color-picker" style="gap: 8px;">
@@ -133,7 +132,6 @@
                         <input type="text" id="bg-body-dark" class="config-input" readonly>
                     </div>
 
-                    <!-- bg-navbar -->
                     <div class="config-group">
                         <label for="bg-navbar">--bg-navbar</label>
                         <div class="color-picker">
@@ -142,7 +140,7 @@
                                 style="flex: 1;">
                         </div>
                     </div>
-                    <!-- preloader-bg -->
+
                     <div class="config-group">
                         <label>--preloader-bg</label>
                         <div class="color-picker" style="gap: 8px;">
@@ -152,7 +150,7 @@
                         </div>
                         <input type="text" id="preloader-bg" class="config-input" readonly>
                     </div>
-                    <!-- Default Theme -->
+
                     <div class="config-group">
                         <label>Chế độ mặc định</label>
                         <select id="default-theme" class="config-input">
@@ -160,6 +158,19 @@
                             <option value="dark">Dark Mode</option>
                         </select>
                     </div>
+
+                    <!-- ==================== SOCIAL MEDIA LINKS ==================== -->
+                    <hr style="margin: 40px 0; border-color: var(--border);">
+                    <h3>Social Media Links (Footer)</h3>
+                    <p style="opacity: 0.7; margin-bottom: 20px;">Quản lý các liên kết mạng xã hội hiển thị ở Footer</p>
+
+                    <div id="social-links-container" style="margin-bottom: 30px;">
+                        <!-- JS sẽ render động -->
+                    </div>
+
+                    <button class="config-btn primary" onclick="ConfigManager.modules.general.addNewSocialLink()">
+                        + Thêm Social Media Link Mới
+                    </button>
                 </div>
             </div>
             <div id="tab-hero" class="config-tab">

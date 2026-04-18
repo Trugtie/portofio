@@ -1,15 +1,19 @@
-// ====================== GENERAL.JS ======================
+// ====================== GENERAL.JS - WITH SOCIAL MEDIA LINKS ======================
 // Assets/js/config/general.js
 
 window.ConfigGeneral = {
+  socialLinks: [],
+
   init() {
     this.bindColorSync();
     this.bindGradientPickers();
     this.bindNavbarColor();
-    console.log("%c✅ General module initialized", "color: #ff9edb");
+    console.log(
+      "%c✅ General module initialized with Social Media Links",
+      "color: #ff9edb",
+    );
   },
 
-  // Đồng bộ giữa color picker và input text
   bindColorSync() {
     const colorFields = [
       "primary-color",
@@ -18,39 +22,35 @@ window.ConfigGeneral = {
       "highlight-color",
       "text-dark",
     ];
-
     colorFields.forEach((id) => {
       const picker = document.getElementById(id);
       const textInput = document.getElementById(id + "-text");
-
       if (picker && textInput) {
-        picker.addEventListener("input", () => {
-          textInput.value = picker.value;
-        });
-
-        textInput.addEventListener("input", () => {
-          picker.value = textInput.value;
-        });
+        picker.addEventListener(
+          "input",
+          () => (textInput.value = picker.value),
+        );
+        textInput.addEventListener(
+          "input",
+          () => (picker.value = textInput.value),
+        );
       }
     });
   },
 
-  // Xử lý gradient cho bg-body (Light & Dark) và Preloader
   bindGradientPickers() {
     const gradientGroups = [
       { prefix: "bg-body", mode: "light" },
       { prefix: "bg-body-dark", mode: "dark" },
       { prefix: "preloader", mode: "preloader" },
     ];
-
     gradientGroups.forEach((group) => {
       for (let i = 1; i <= 3; i++) {
         const el = document.getElementById(`${group.prefix}-color${i}`);
-        if (el) {
+        if (el)
           el.addEventListener("input", () =>
             this.updateGradientDisplay(group.mode),
           );
-        }
       }
     });
   },
@@ -77,19 +77,73 @@ window.ConfigGeneral = {
     }
   },
 
-  // Xử lý bg-navbar (rgba)
   bindNavbarColor() {
-    const navbarPicker = document.getElementById("bg-navbar-color");
-    const navbarInput = document.getElementById("bg-navbar");
-
-    if (navbarPicker && navbarInput) {
-      navbarPicker.addEventListener("input", () => {
-        const hex = navbarPicker.value;
+    const picker = document.getElementById("bg-navbar-color");
+    const input = document.getElementById("bg-navbar");
+    if (picker && input) {
+      picker.addEventListener("input", () => {
+        const hex = picker.value;
         const r = parseInt(hex.substr(1, 2), 16);
         const g = parseInt(hex.substr(3, 2), 16);
         const b = parseInt(hex.substr(5, 2), 16);
-        navbarInput.value = `rgba(${r}, ${g}, ${b}, 0.2)`;
+        input.value = `rgba(${r}, ${g}, ${b}, 0.2)`;
       });
+    }
+  },
+
+  // ====================== SOCIAL MEDIA LINKS ======================
+  renderSocialLinks() {
+    const container = document.getElementById("social-links-container");
+    if (!container) return;
+
+    let html = "";
+    this.socialLinks.forEach((link, index) => {
+      html += `
+        <div style="border:2px solid var(--accent); padding:18px; margin-bottom:16px; border-radius:14px; background:rgba(255,255,255,0.6); display:grid; grid-template-columns:1fr 1fr 80px; gap:12px; align-items:center;">
+          <div>
+            <label>Icon Class (Font Awesome)</label>
+            <input type="text" class="config-input social-input" 
+                   data-index="${index}" data-field="icon" 
+                   value="${link.icon}">
+          </div>
+          <div>
+            <label>URL</label>
+            <input type="text" class="config-input social-input" 
+                   data-index="${index}" data-field="url" 
+                   value="${link.url}">
+          </div>
+          <button class="config-btn secondary" 
+                  onclick="ConfigManager.modules.general.removeSocialLink(${index})"
+                  style="background:#ff6b6b;color:white;padding:8px 12px;">Xóa</button>
+        </div>`;
+    });
+
+    container.innerHTML =
+      html ||
+      `<p style="opacity:0.6;text-align:center;padding:40px;">Chưa có social link nào</p>`;
+
+    document.querySelectorAll(".social-input").forEach((input) => {
+      input.addEventListener("input", (e) => {
+        const i = parseInt(e.target.dataset.index);
+        const f = e.target.dataset.field;
+        if (this.socialLinks[i]) this.socialLinks[i][f] = e.target.value.trim();
+      });
+    });
+  },
+
+  addNewSocialLink() {
+    if (!this.socialLinks) this.socialLinks = [];
+    this.socialLinks.push({
+      icon: "fab fa-youtube",
+      url: "https://youtube.com",
+    });
+    this.renderSocialLinks();
+  },
+
+  removeSocialLink(index) {
+    if (confirm("Xóa social media link này?")) {
+      this.socialLinks.splice(index, 1);
+      this.renderSocialLinks();
     }
   },
 
@@ -106,14 +160,14 @@ window.ConfigGeneral = {
       bgNavbar: document.getElementById("bg-navbar").value,
       preloaderBg: document.getElementById("preloader-bg").value,
       defaultTheme: document.getElementById("default-theme").value,
+      socialLinks: this.socialLinks || [],
     };
   },
 
-  // ====================== LOAD (nếu cần) ======================
+  // ====================== LOAD ======================
   load(data) {
     if (!data) return;
 
-    // Load màu sắc
     if (data.primary) {
       document.getElementById("primary-color").value = data.primary;
       document.getElementById("primary-color-text").value = data.primary;
@@ -122,8 +176,20 @@ window.ConfigGeneral = {
       document.getElementById("primary-hover").value = data.primaryHover;
       document.getElementById("primary-hover-text").value = data.primaryHover;
     }
-    // ... có thể bổ sung thêm các field khác sau
 
+    this.socialLinks = Array.isArray(data.socialLinks)
+      ? data.socialLinks
+      : [
+          {
+            icon: "fab fa-youtube",
+            url: "https://www.youtube.com/channel/UCfXT5WxwDzsXy4v04K758dg",
+          },
+          { icon: "fab fa-x-twitter", url: "https://x.com/JiahanMiya91474" },
+          { icon: "fab fa-tiktok", url: "https://www.tiktok.com/@jiahan2103" },
+          { icon: "fab fa-discord", url: "./discordpage.html" },
+        ];
+
+    this.renderSocialLinks();
     this.updateGradientDisplay("light");
     this.updateGradientDisplay("dark");
     this.updateGradientDisplay("preloader");

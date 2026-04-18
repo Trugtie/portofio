@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof initSettings === "function") initSettings();
   if (typeof initBackToTop === "function") initBackToTop();
   if (typeof initMusicPlayer === "function") initMusicPlayer();
+  if (typeof initFooter === "function") initFooter();
 
   console.log(
     "%c✅ All modules initialized from main.js",
