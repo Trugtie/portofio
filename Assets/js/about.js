@@ -1,36 +1,54 @@
 // ====================== ABOUT.JS ======================
-
-const aboutData = {
-  aboutMe: {
-    title: "About Me",
-    profileImage: "./Assets/Images/Avatar.gif",
-    alt: "Linh Avatar",
-    text: "Linh là một Digital Artist & Gamer người Việt Nam yêu thích sự kết hợp giữa nghệ thuật anime và gaming. Tôi tạo ra những thiết kế hiện đại, trẻ trung với chút vibe Nhật Bản.",
-  },
-  hobbies: [
-    "Watching Anime",
-    "Anime Drawing",
-    "Cosplay",
-    "League of Legends",
-    "Gaming",
-    "Chilling With Friends",
-  ],
-};
+// Assets/js/about.js - Đồng bộ data từ ConfigMain
 
 function initAbout() {
+  console.log("%c📖 About init - Syncing from ConfigMain", "color: #ff9edb");
+
+  renderAbout();
+
+  // Lắng nghe khi ConfigMain load hoặc cập nhật data
+  document.addEventListener("configMainReady", () => {
+    console.log("%c🔄 ConfigMainReady - Re-rendering About", "color: #ff9edb");
+    renderAbout();
+  });
+}
+
+function renderAbout() {
+  const data = ConfigMain.getAbout() || {};
+
+  // Dữ liệu mặc định nếu chưa có từ Config
+  const aboutData = {
+    title: "About Me",
+    profileImage: data.profileImage || "./Assets/Images/Avatar.gif",
+    alt: "Linh Avatar",
+    text:
+      data.aboutText ||
+      "Linh là một Digital Artist & Gamer người Việt Nam yêu thích sự kết hợp giữa nghệ thuật anime và gaming. Tôi tạo ra những thiết kế hiện đại, trẻ trung với chút vibe Nhật Bản.",
+    hobbies: Array.isArray(data.hobbies)
+      ? data.hobbies
+      : [
+          "Watching Anime",
+          "Anime Drawing",
+          "Cosplay",
+          "League of Legends",
+          "Gaming",
+          "Chilling With Friends",
+        ],
+  };
+
   // Render About Me
   const aboutMeEl = document.getElementById("about-me-content");
   if (aboutMeEl) {
     aboutMeEl.innerHTML = `
-      <h2 class="section-title">${aboutData.aboutMe.title}</h2>
+      <h2 class="section-title">${aboutData.title}</h2>
       
       <div class="profile-image-wrapper">
-        <img src="${aboutData.aboutMe.profileImage}" 
-             alt="${aboutData.aboutMe.alt}" 
+        <img src="${aboutData.profileImage}" 
+             alt="${aboutData.alt}" 
              class="profile-image">
       </div>
       
-      <p class="about-text">${aboutData.aboutMe.text}</p>
+      <p class="about-text">${aboutData.text}</p>
     `;
   }
 
@@ -49,11 +67,8 @@ function initAbout() {
     `;
   }
 
-  console.log(
-    "%c✅ About section rendered successfully",
-    "color: #ff9edb; font-weight: bold;",
-  );
+  console.log("%c✅ About section rendered from ConfigMain", "color: #ff9edb");
 }
 
-// Export function để main.js gọi
+// Export
 window.initAbout = initAbout;
