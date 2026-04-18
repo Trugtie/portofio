@@ -1,7 +1,8 @@
-// ====================== NAVBAR.JS ======================
+// ====================== NAVBAR.JS - LOGO LÀ ẢNH + DYNAMIC ======================
 
 const NavbarConfig = {
-  logo: "Linh",
+  logoImage: "./Assets/Images/logo.png", // ← Đường dẫn ảnh logo
+  logoAlt: "GiaHan Logo",
   menuItems: [
     { text: "Home", href: "#home" },
     { text: "About", href: "#about" },
@@ -28,8 +29,10 @@ function initNavbar() {
   const navbarHTML = `
     <nav class="navbar">
       <div class="nav-container">
-        <!-- Logo -->
-        <div class="logo">${NavbarConfig.logo}</div>
+        <!-- Logo là ảnh -->
+        <a href="#home" class="logo">
+          <img src="${NavbarConfig.logoImage}" alt="${NavbarConfig.logoAlt}" style="height: 32px; width: auto; object-fit: contain;">
+        </a>
 
         <!-- Desktop Menu -->
         <div class="nav-menu">
@@ -49,7 +52,6 @@ function initNavbar() {
 
   navbarContainer.innerHTML = navbarHTML;
 
-  // Khởi tạo sự kiện (mobile menu)
   initNavbarEvents();
 }
 
@@ -57,7 +59,6 @@ function initNavbarEvents() {
   const mobileBtn = document.querySelector(".mobile-btn");
   if (!mobileBtn) return;
 
-  // Tạo mobile menu nếu chưa có
   let mobileMenu = document.querySelector(".mobile-menu");
   if (!mobileMenu) {
     mobileMenu = document.createElement("div");
@@ -85,7 +86,6 @@ function initNavbarEvents() {
     mobileMenu.innerHTML = mobileMenuHTML;
   }
 
-  // Toggle mobile menu
   mobileBtn.addEventListener("click", () => {
     if (mobileMenu.style.display === "flex") {
       mobileMenu.style.display = "none";
@@ -96,8 +96,7 @@ function initNavbarEvents() {
     }
   });
 
-  console.log("%c✅ Navbar ready with initNavbar() 🌸", "color: #ff9edb;");
 }
 
-// Export function để main.js gọi
+// Export
 window.initNavbar = initNavbar;

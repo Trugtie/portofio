@@ -10,11 +10,7 @@ const Preloader = {
 
     if (!preloader || !startBtn) return;
 
-    console.log(
-      "%c🌸 Preloader initialized - Will scroll to top",
-      "color: #ff9edb;",
-    );
-
+   
     this.lockScroll();
 
     startBtn.addEventListener("click", () => {

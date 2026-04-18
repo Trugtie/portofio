@@ -2,16 +2,12 @@
 // Assets/js/gallery.js
 
 function initGallery() {
-  console.log("%c🖼️ Gallery init - Syncing from ConfigMain", "color: #ff9edb");
 
   renderMasonryGallery();
 
   // Lắng nghe khi ConfigMain cập nhật data từ Firebase/Config Page
   document.addEventListener("configMainReady", () => {
-    console.log(
-      "%c🔄 ConfigMainReady - Re-rendering Gallery",
-      "color: #ff9edb",
-    );
+   
     renderMasonryGallery();
   });
 }

@@ -3,10 +3,6 @@
 
 window.ConfigGaming = {
   init() {
-    console.log(
-      "%c✅ Gaming module initialized with Fixed Media Preview",
-      "color: #ff9edb",
-    );
     this.ensureDefaultData();
   },
 

@@ -31,7 +31,6 @@ window.ConfigAbout = {
   hobbiesData: [],
 
   init() {
-    console.log("%c✅ About module initialized with Preview", "color: #ff9edb");
     this.resetToDefault();
     this.bindPreviewListeners();
   },

@@ -34,10 +34,7 @@ window.firebaseSet = set;
 window.firebaseGet = get;
 window.firebaseOnValue = onValue;
 
-console.log(
-  "%c✅ Firebase Realtime Database initialized & fully exposed to window",
-  "color: #ff9edb; font-weight: bold;",
-);
+
 
 // Giữ nguyên chức năng visitor count
 function incrementVisitorCount() {

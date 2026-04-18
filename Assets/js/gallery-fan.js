@@ -2,19 +2,13 @@
 // Assets/js/gallery-fan.js - Đồng bộ từ ConfigMain
 
 function initFanGallery() {
-  console.log(
-    "%c🃏 Fan Gallery init - Syncing from ConfigMain",
-    "color: #ff9edb",
-  );
+ 
 
   renderFanGallery();
 
   // Lắng nghe khi ConfigMain cập nhật data
   document.addEventListener("configMainReady", () => {
-    console.log(
-      "%c🔄 ConfigMainReady - Re-rendering Fan Gallery",
-      "color: #ff9edb",
-    );
+  
     renderFanGallery();
   });
 }

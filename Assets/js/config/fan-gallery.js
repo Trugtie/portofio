@@ -3,10 +3,6 @@
 
 window.ConfigFanGallery = {
   init() {
-    console.log(
-      "%c✅ Fan Gallery module initialized with Card Management",
-      "color: #ff9edb",
-    );
     this.ensureDefaultData();
   },
 

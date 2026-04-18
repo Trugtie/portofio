@@ -2,13 +2,11 @@
 // Assets/js/gaming.js - Đồng bộ data từ ConfigMain
 
 function initGaming() {
-  console.log("%c🎮 Gaming init - Syncing from ConfigMain", "color: #ff9edb");
 
   renderGaming();
 
   // Lắng nghe khi ConfigMain cập nhật data (sau khi save ở trang config)
   document.addEventListener("configMainReady", () => {
-    console.log("%c🔄 ConfigMainReady - Re-rendering Gaming", "color: #ff9edb");
     renderGaming();
   });
 }

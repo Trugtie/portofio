@@ -3,7 +3,6 @@
 
 window.ConfigHero = {
   init() {
-    console.log("%c✅ Hero module initialized with Preview", "color: #ff9edb");
     this.bindPreviewListeners();
   },
 
@@ -113,7 +112,5 @@ window.ConfigHero = {
       this.updateYouTubePreview();
       this.updateHeroImagePreview();
     }, 150);
-
-    console.log("%c✅ Hero data loaded with previews", "color: #ff9edb");
   },
 };

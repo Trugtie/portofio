@@ -80,7 +80,6 @@ function loadConfigFromFirebase(callback) {
       configRef,
       (snapshot) => {
         const data = snapshot.val() || {};
-        console.log("%c✅ Config loaded from Firebase", "color: #ff9edb");
         callback(data);
       },
       (error) => {

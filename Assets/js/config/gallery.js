@@ -3,10 +3,7 @@
 
 window.ConfigMainGallery = {
   init() {
-    console.log(
-      "%c✅ Main Gallery module initialized with Preview",
-      "color: #ff9edb",
-    );
+   
     this.ensureDefaultData();
   },
 

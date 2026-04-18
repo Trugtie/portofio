@@ -12,10 +12,7 @@ const ConfigManager = {
   useFirebase: true,
 
   init() {
-    console.log(
-      "%c⚙️ Config System - Modular Version Started 🌸",
-      "color: #ff9edb; font-weight: bold;",
-    );
+   
 
     this.loadAllModules();
     this.bindTabNavigation();
@@ -23,10 +20,7 @@ const ConfigManager = {
     this.loadSavedConfig();
     this.showTab("general");
 
-    console.log(
-      "%c✅ Config Manager initialized successfully",
-      "color: #ff9edb; font-weight: bold;",
-    );
+   
   },
 
   loadAllModules() {

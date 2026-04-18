@@ -4,16 +4,12 @@
 let heroPlayer = null;
 
 function initHero() {
-  console.log("%c🎨 Hero init - Syncing from ConfigMain", "color: #ff9edb");
 
   renderHero();
 
   // Lắng nghe khi ConfigMain load xong data
   document.addEventListener("configMainReady", () => {
-    console.log(
-      "%c🔄 Config data updated - Re-rendering Hero",
-      "color: #ff9edb",
-    );
+   
     renderHero();
   });
 }

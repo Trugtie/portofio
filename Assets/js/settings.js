@@ -17,10 +17,7 @@ const Settings = {
     this.bindEvents();
     this.loadSavedSettings();
 
-    console.log(
-      "%c⚙️ Settings loaded with Music & Video Volume 🌸",
-      "color: #ff9edb; font-weight: bold;",
-    );
+   
   },
 
   bindEvents() {
@@ -51,15 +48,15 @@ const Settings = {
       );
     }
 
-    document.getElementById("btn-config-page").addEventListener("click", () => {
-      this.closeModal();
-      window.location.href = "./config.html";
-    });
+    // document.getElementById("btn-config-page").addEventListener("click", () => {
+    //   this.closeModal();
+    //   window.location.href = "./config.html";
+    // });
 
-    document.getElementById("btn-back-home").addEventListener("click", () => {
-      this.closeModal();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    // document.getElementById("btn-back-home").addEventListener("click", () => {
+    //   this.closeModal();
+    //   window.scrollTo({ top: 0, behavior: "smooth" });
+    // });
   },
 
   // ====================== MUSIC VOLUME ======================
@@ -70,7 +67,6 @@ const Settings = {
 
     if (musicPlayer && typeof musicPlayer.setVolume === "function") {
       musicPlayer.setVolume(vol);
-      console.log(`🎵 Music volume → ${vol}%`);
     }
   },
 
@@ -85,7 +81,6 @@ const Settings = {
       typeof window.heroPlayer.setVolume === "function"
     ) {
       window.heroPlayer.setVolume(vol);
-      console.log(`🎥 Video volume → ${vol}%`);
     }
   },
 

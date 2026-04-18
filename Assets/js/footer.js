@@ -1,10 +1,7 @@
 // ====================== FOOTER.JS ======================
 
 function initFooter() {
-  console.log(
-    "%c🌸 Footer initialized with Dynamic Social Media",
-    "color: #ff9edb;",
-  );
+
 
   renderSocialLinks();
 

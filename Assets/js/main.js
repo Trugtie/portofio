@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log(
-    "%cLinh Portfolio - Loaded successfully 🌸",
-    "color: #ff9edb; font-weight: bold; font-size: 14px;",
-  );
+  
 
   if (typeof initPreloader === "function") initPreloader();
   if (typeof initNavbar === "function") initNavbar();
@@ -16,8 +13,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof initMusicPlayer === "function") initMusicPlayer();
   if (typeof initFooter === "function") initFooter();
 
-  console.log(
-    "%c✅ All modules initialized from main.js",
-    "color: #ff9edb; font-weight: bold;",
-  );
+ 
 });

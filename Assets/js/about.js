@@ -2,13 +2,11 @@
 // Assets/js/about.js - Đồng bộ đầy đủ từ ConfigMain (text + image + hobby + background)
 
 function initAbout() {
-  console.log("%c📖 About init - Syncing from ConfigMain", "color: #ff9edb");
 
   renderAbout();
 
   // Lắng nghe khi ConfigMain cập nhật data
   document.addEventListener("configMainReady", () => {
-    console.log("%c🔄 ConfigMainReady - Re-rendering About", "color: #ff9edb");
     renderAbout();
   });
 }
@@ -94,10 +92,7 @@ function renderAbout() {
     }
   }
 
-  console.log(
-    "%c✅ About section fully synced from ConfigMain (including backgrounds)",
-    "color: #ff9edb",
-  );
+
 }
 
 // Export

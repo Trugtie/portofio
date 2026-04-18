@@ -7,10 +7,7 @@ const MusicPlayer = {
   init() {
     this.bindEvents();
     this.restoreSavedMusic();
-    console.log(
-      "%c🎵 Music Player - Title shortened + Auto Restore Fixed 🌸",
-      "color: #ff9edb; font-weight: bold;",
-    );
+    
   },
 
   bindEvents() {

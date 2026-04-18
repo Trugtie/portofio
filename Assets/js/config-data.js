@@ -16,10 +16,7 @@ const ConfigMain = {
   useFirebase: true,
 
   init() {
-    console.log(
-      "%c📥 ConfigMain - Loading all data from database...",
-      "color: #ff9edb; font-weight: bold;",
-    );
+   
     this.loadSavedConfig();
   },
 
@@ -56,10 +53,7 @@ const ConfigMain = {
     this.musicConfig = config.music || {};
     this.music = config.music || {};
 
-    console.log(
-      "%c✅ ConfigMain - All data loaded successfully",
-      "color: #ff9edb",
-    );
+   
 
     // Thông báo cho các component biết data đã sẵn sàng
     document.dispatchEvent(new Event("configMainReady"));

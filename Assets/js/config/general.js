@@ -8,10 +8,7 @@ window.ConfigGeneral = {
     this.bindColorSync();
     this.bindGradientPickers();
     this.bindNavbarColor();
-    console.log(
-      "%c✅ General module initialized with Social Media Links",
-      "color: #ff9edb",
-    );
+   
   },
 
   bindColorSync() {
