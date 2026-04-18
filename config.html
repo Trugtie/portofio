@@ -170,11 +170,18 @@
                         của Hero</p>
 
                     <!-- YouTube Background -->
-                    <div class="config-group">
-                        <label for="hero-youtube">YouTube Video ID (Background)</label>
-                        <input type="text" id="hero-youtube" class="config-input" value="F_Co6qvNsUY"
-                            placeholder="Ví dụ: F_Co6qvNsUY">
-                        <small style="color: #888;">Dán ID video YouTube (không phải link đầy đủ)</small>
+                    <div class="config-group"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
+                        <div>
+                            <label for="hero-youtube">YouTube Video ID (Background)</label>
+                            <input type="text" id="hero-youtube" class="config-input" value="F_Co6qvNsUY"
+                                placeholder="Ví dụ: F_Co6qvNsUY">
+                            <small style="color: #888;">Dán ID video YouTube (không phải link đầy đủ)</small>
+                        </div>
+                        <div id="youtube-preview"
+                            style="background: rgba(255,255,255,0.7); padding: 12px; border-radius: 12px; border: 2px dashed var(--accent); min-height: 140px;">
+                            <!-- Preview YouTube sẽ được JS tạo -->
+                        </div>
                     </div>
 
                     <!-- Badge -->
@@ -207,9 +214,17 @@
                     </div>
 
                     <!-- Hero Image -->
-                    <div class="config-group">
-                        <label for="hero-image">Hero Image URL</label>
-                        <input type="text" id="hero-image" class="config-input" value="./Assets/Images/animegirl.png">
+                    <div class="config-group"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
+                        <div>
+                            <label for="hero-image">Hero Image URL</label>
+                            <input type="text" id="hero-image" class="config-input"
+                                value="./Assets/Images/animegirl.png">
+                        </div>
+                        <div id="hero-image-preview"
+                            style="background: rgba(255,255,255,0.7); padding: 12px; border-radius: 12px; border: 2px dashed var(--accent); min-height: 180px; display: flex; align-items: center; justify-content: center;">
+                            <!-- Preview Hero Image sẽ được JS tạo -->
+                        </div>
                     </div>
 
                     <!-- Buttons -->
