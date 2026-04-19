@@ -417,6 +417,9 @@ html {
   .hero-title {
     font-size: 4.8rem;
   }
+  .hero-image {
+    max-width: 460px;
+  }
 }
 
 @media (max-width: 968px) {
@@ -455,8 +458,8 @@ html {
 
   /* Giảm kích thước ảnh trên mobile */
   .hero-image {
-    max-width: 380px;
-    transform: rotate(0deg);
+    max-width: 7.5rem;
+    transform: rotate(0deg); /* bỏ rotate trên mobile để đẹp hơn */
   }
 
   .hero-image:hover {
@@ -501,12 +504,20 @@ html {
   }
 
   .hero-image {
-    max-width: 320px;
+    max-width: 9.5rem;
+    border-radius: 24px;
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.35);
   }
 
   .scroll-indicator {
     bottom: 30px;
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image {
+    max-width: 0rem;
   }
 }
 
