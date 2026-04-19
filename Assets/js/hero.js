@@ -1,15 +1,12 @@
-// ====================== HERO.JS ======================
-// Assets/js/hero.js - Đồng bộ data từ ConfigMain
+// ====================== HERO.JS - ĐÃ CHỈNH MUTE THEO VOLUME ======================
+// Assets/js/hero.js
 
 let heroPlayer = null;
 
 function initHero() {
-
   renderHero();
 
-  // Lắng nghe khi ConfigMain load xong data
   document.addEventListener("configMainReady", () => {
-   
     renderHero();
   });
 }
@@ -33,29 +30,22 @@ function renderHero() {
     btn2Link: data.btn2Link || "#about",
   };
 
-  // Badge - Sửa lỗi cú pháp
   const badgeIconEl = document.querySelector(".badge .badge-icon");
   const badgeTextEl = document.querySelector(".badge .badge-text");
   if (badgeIconEl) badgeIconEl.textContent = heroData.badgeIcon;
   if (badgeTextEl) badgeTextEl.textContent = heroData.badgeText;
 
-  // Title
   const titleEl = document.querySelector(".hero-title");
   if (titleEl) {
     titleEl.innerHTML = `${heroData.titlePrefix}<span class="highlight">${heroData.titleHighlight}</span>`;
   }
 
-  // Subtitle
   const subtitleEl = document.querySelector(".hero-subtitle");
   if (subtitleEl) subtitleEl.textContent = heroData.subtitle;
 
-  // Hero Image
   const imageEl = document.querySelector(".hero-image");
-  if (imageEl) {
-    imageEl.src = heroData.heroImage;
-  }
+  if (imageEl) imageEl.src = heroData.heroImage;
 
-  // Buttons
   const buttonsContainer = document.querySelector(".hero-buttons");
   if (buttonsContainer) {
     buttonsContainer.innerHTML = `
@@ -83,7 +73,7 @@ function initHeroVideo() {
       videoId: youtubeId,
       playerVars: {
         autoplay: 1,
-        mute: 0,
+        mute: 1,
         controls: 0,
         loop: 1,
         playlist: youtubeId,
@@ -95,8 +85,17 @@ function initHeroVideo() {
       events: {
         onReady: (event) => {
           window.heroPlayer = event.target;
-          const savedVol = localStorage.getItem("videoVolume") || "40";
-          event.target.setVolume(parseInt(savedVol));
+
+          const savedVol = parseInt(localStorage.getItem("videoVolume") || "0");
+
+          // Áp dụng volume + tự động mute/unmute
+          event.target.setVolume(savedVol);
+          if (savedVol > 0) {
+            event.target.unMute();
+          } else {
+            event.target.mute();
+          }
+
           event.target.playVideo();
         },
       },

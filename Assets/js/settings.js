@@ -16,8 +16,6 @@ const Settings = {
 
     this.bindEvents();
     this.loadSavedSettings();
-
-   
   },
 
   bindEvents() {
@@ -81,6 +79,12 @@ const Settings = {
       typeof window.heroPlayer.setVolume === "function"
     ) {
       window.heroPlayer.setVolume(vol);
+
+      if (vol > 0) {
+        window.heroPlayer.unMute();
+      } else {
+        window.heroPlayer.mute();
+      }
     }
   },
 
@@ -118,7 +122,7 @@ const Settings = {
     this.volumeValue.textContent = savedMusicVol + "%";
 
     // Video Volume
-    const savedVideoVol = localStorage.getItem("videoVolume") || "30";
+    const savedVideoVol = localStorage.getItem("videoVolume") || "0";
     if (this.videoVolumeSlider) {
       this.videoVolumeSlider.value = savedVideoVol;
       this.videoVolumeValue.textContent = savedVideoVol + "%";
