@@ -1,8 +1,6 @@
 // ====================== FOOTER.JS ======================
 
 function initFooter() {
-
-
   renderSocialLinks();
 
   document.addEventListener("configMainReady", () => {
@@ -13,7 +11,7 @@ function initFooter() {
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Cảm ơn bạn đã đăng ký nhận tin từ Linh! 💌");
+      alert("Cảm ơn bạn đã đăng ký nhận tin từ Hân! 💌");
       form.reset();
     });
   }
