@@ -1,4 +1,4 @@
-// ====================== FIREBASE CONFIG HELPER ======================
+// ====================== FIREBASE CONFIG HELPER - PUBLIC READ ======================
 // Assets/js/config/firebase-config.js
 
 let isFirebaseReady = false;
@@ -17,11 +17,10 @@ function waitForFirebase(callback) {
       clearInterval(interval);
       isFirebaseReady = true;
       callback();
-    } else if (attempts > 50) {
-      // chờ khoảng 5 giây
+    } else if (attempts > 60) {
       clearInterval(interval);
       console.warn(
-        "%c⚠️ Firebase vẫn chưa sẵn sàng sau 5 giây, fallback localStorage",
+        "%c⚠️ Firebase not ready → fallback to localStorage",
         "color: orange",
       );
       callback();
@@ -29,15 +28,11 @@ function waitForFirebase(callback) {
   }, 100);
 }
 
-// ====================== SAVE ======================
+// ====================== SAVE (chỉ cho phép ghi vào portfolioConfig) ======================
 function saveConfigToFirebase(config) {
   waitForFirebase(() => {
     if (!isFirebaseReady || !window.database || !window.firebaseRef) {
-      console.warn(
-        "%c⚠️ Firebase chưa sẵn sàng → fallback localStorage",
-        "color: orange",
-      );
-      localStorage.setItem("linhPortfolioConfig", JSON.stringify(config));
+      localStorage.setItem("hanPortfolioConfig", JSON.stringify(config));
       return;
     }
 
@@ -56,17 +51,17 @@ function saveConfigToFirebase(config) {
         console.log("%c✅ Config saved to Firebase", "color: #ff9edb"),
       )
       .catch((err) => {
-        console.error("Save to Firebase failed:", err);
-        localStorage.setItem("linhPortfolioConfig", JSON.stringify(config));
+        console.error("Firebase save failed:", err);
+        localStorage.setItem("hanPortfolioConfig", JSON.stringify(config));
       });
   });
 }
 
-// ====================== LOAD ======================
+// ====================== LOAD (public read) ======================
 function loadConfigFromFirebase(callback) {
   waitForFirebase(() => {
     if (!isFirebaseReady || !window.database || !window.firebaseRef) {
-      const saved = localStorage.getItem("linhPortfolioConfig");
+      const saved = localStorage.getItem("hanPortfolioConfig");
       callback(saved ? JSON.parse(saved) : {});
       return;
     }
@@ -80,11 +75,12 @@ function loadConfigFromFirebase(callback) {
       configRef,
       (snapshot) => {
         const data = snapshot.val() || {};
+        console.log("%c✅ Config loaded from Firebase", "color: #ff9edb");
         callback(data);
       },
       (error) => {
-        console.error("Load from Firebase failed:", error);
-        const saved = localStorage.getItem("linhPortfolioConfig");
+        console.error("Load failed:", error);
+        const saved = localStorage.getItem("hanPortfolioConfig");
         callback(saved ? JSON.parse(saved) : {});
       },
     );
@@ -94,7 +90,7 @@ function loadConfigFromFirebase(callback) {
 function resetConfigInFirebase() {
   waitForFirebase(() => {
     if (!isFirebaseReady || !window.database || !window.firebaseRef) {
-      localStorage.removeItem("linhPortfolioConfig");
+      localStorage.removeItem("hanPortfolioConfig");
       return;
     }
 
