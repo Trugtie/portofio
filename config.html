@@ -257,67 +257,52 @@
             </div>
             <div id="tab-about" class="config-tab">
                 <div class="config-form">
-                    <h2>About Section Settings</h2>
-                    <p style="opacity: 0.7; margin-bottom: 40px;">Thay đổi nội dung About Me và quản lý Hobby List +
-                        Style</p>
+                    <h2>About Me Settings</h2>
+                    <p style="opacity:0.7; margin-bottom:30px;">
+                        Thay đổi thông tin cá nhân (hobbies luôn dùng default từ client)
+                    </p>
 
-                    <!-- About Me Text -->
+                    <!-- About Me Card Fields -->
                     <div class="config-group">
-                        <label for="about-text">About Me Text (Nội dung giới thiệu)</label>
-                        <textarea id="about-text" class="config-textarea" rows="6"></textarea>
+                        <label for="about-name">Tên</label>
+                        <input type="text" id="about-name" class="config-input" placeholder="Gia Hân">
                     </div>
 
-                    <!-- Profile Image với Preview -->
+                    <div class="config-group">
+                        <label for="about-title">Chức danh / Title</label>
+                        <input type="text" id="about-title" class="config-input" placeholder="Digital Artist & Gamer">
+                    </div>
+
+                    <div class="config-group">
+                        <label for="about-profile-image">Profile Image URL (Avatar)</label>
+                        <input type="text" id="about-profile-image" class="config-input">
+                    </div>
+
                     <div class="config-group"
                         style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
                         <div>
-                            <label for="about-profile-image">Profile Image URL (Avatar)</label>
-                            <input type="text" id="about-profile-image" class="config-input">
+                            <label>Nội dung Greeting + Bio + Invite + Thanks</label>
+                            <textarea id="about-bio" class="config-textarea" rows="8"
+                                placeholder="Mình yêu thích..."></textarea>
                         </div>
                         <div id="profile-image-preview"
-                            style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 12px; border: 2px dashed var(--accent); min-height: 200px; display: flex; align-items: center; justify-content: center;">
-                            <!-- JS sẽ tạo preview -->
+                            style="background:rgba(255,255,255,0.7); padding:15px; border-radius:16px; border:2px dashed var(--accent); min-height:260px; display:flex; align-items:center; justify-content:center;">
                         </div>
                     </div>
 
                     <hr style="margin: 40px 0; border-color: var(--border);">
 
-                    <!-- Hobby Management -->
-                    <h3>Hobby List Management</h3>
-                    <p style="opacity: 0.7; margin-bottom: 20px;">Quản lý danh sách hobby + màu sắc cho từng badge</p>
-
-                    <div id="hobby-list-container" style="margin-bottom: 30px;">
-                        <!-- JS sẽ render danh sách hobby động vào đây -->
+                    <!-- Hobby Subtitle (chỉ subtitle, danh sách hobby cố định) -->
+                    <div class="config-group">
+                        <label for="hobby-subtitle">Hobby Subtitle</label>
+                        <input type="text" id="hobby-subtitle" class="config-input"
+                            value="Những điều mình yêu thích mỗi ngày">
                     </div>
 
-                    <button class="config-btn primary" onclick="ConfigManager.modules.about.addNewHobby()"
-                        style="margin-bottom: 30px;">
-                        + Thêm Hobby Mới
-                    </button>
-
-                    <!-- Background Images với Preview -->
-                    <div class="config-group"
-                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
-                        <div>
-                            <label for="about-me-bg">About Me Card Background Image</label>
-                            <input type="text" id="about-me-bg" class="config-input">
-                        </div>
-                        <div id="aboutme-bg-preview"
-                            style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 12px; border: 2px dashed var(--accent); min-height: 160px; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center;">
-                            <!-- JS sẽ tạo preview -->
-                        </div>
-                    </div>
-
-                    <div class="config-group"
-                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
-                        <div>
-                            <label for="hobby-bg">Hobby Card Background Image</label>
-                            <input type="text" id="hobby-bg" class="config-input">
-                        </div>
-                        <div id="hobby-bg-preview"
-                            style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 12px; border: 2px dashed var(--accent); min-height: 160px; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center;">
-                            <!-- JS sẽ tạo preview -->
-                        </div>
+                    <div
+                        style="margin-top: 30px; padding: 20px; background: rgba(255,158,219,0.08); border-radius: 16px; border: 1px dashed var(--accent);">
+                        <strong>📌 Lưu ý:</strong> Danh sách Hobby luôn dùng default từ <code>about.js</code>.<br>
+                        Nếu muốn thay đổi hobby, hãy sửa trực tiếp trong file <code>getDefaultHobbies()</code>.
                     </div>
                 </div>
             </div>
