@@ -116,9 +116,9 @@ html {
 }
 
 .nav-container {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 20px 40px;
+  padding: 10px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -129,6 +129,9 @@ html {
   font-weight: 700;
   letter-spacing: -1px;
   color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-menu {
@@ -2134,7 +2137,7 @@ input:checked + .slider:before {
 
 @media (max-width: 640px) {
   .nav-container {
-    padding: 18px 24px;
+    padding: 10px 24px;
   }
 }
 

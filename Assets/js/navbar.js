@@ -65,7 +65,7 @@ function initNavbarEvents() {
     mobileMenu.className = "mobile-menu";
     mobileMenu.style.cssText = `
       position: fixed;
-      top: 80px;
+      top: 0;
       left: 0;
       right: 0;
       background: rgba(255, 255, 255, 0.1);
@@ -95,7 +95,6 @@ function initNavbarEvents() {
       mobileBtn.textContent = "✕";
     }
   });
-
 }
 
 // Export
