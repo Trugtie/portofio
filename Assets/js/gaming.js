@@ -2,7 +2,6 @@
 // Assets/js/gaming.js - Đồng bộ data từ ConfigMain
 
 function initGaming() {
-
   renderGaming();
 
   // Lắng nghe khi ConfigMain cập nhật data (sau khi save ở trang config)
@@ -29,8 +28,7 @@ function renderGaming() {
         mostPlayed: "Briar",
         playstyle: "Jungle — Chuyên Briar và tướng sát thủ",
         favoriteChamps: ["Briar", "Jinx", "Pantheon"],
-        media:
-          "https://media.discordapp.net/attachments/925810547931365386/1494410718433509447/IMG_2401.jpg?ex=69e281f0&is=69e13070&hm=7db4d799ab1b7e21c5997728160513c104b5d07b97ff51311d7f911f49cf3e5e&=&format=webp&width=448&height=793",
+        media: "/Assets/Images/briar.jpg",
         accentColor: "#ff9edb",
         cardColor: "#ff9edb4b",
       },
@@ -42,8 +40,7 @@ function renderGaming() {
         mostPlayed: "Raiden Shogun",
         playstyle: "Main Electro & Story Enjoyer",
         favoriteChamps: ["Raiden Shogun", "Yae Miko", "Furina"],
-        media:
-          "https://i.pinimg.com/736x/82/ad/df/82addfe72478ad9bf2b697802a8d27ed.jpg",
+        media: "/Assets/Images/samurai.jpg",
         accentColor: "#c084fc",
         cardColor: "#c084fc4d",
       },

@@ -36,7 +36,6 @@ console.log(
   "color: #ff9edb; font-weight: bold;",
 );
 
-// ====================== VISITOR COUNT (giữ nguyên) ======================
 function incrementVisitorCount() {
   const visitorRef = window.firebaseRef(database, "visitors/page_views");
   window.firebaseGet(visitorRef).then((snapshot) => {
@@ -45,14 +44,33 @@ function incrementVisitorCount() {
   });
 }
 
+function updateVisitCounts(count) {
+  const countEl = document.getElementById("visit-count");
+  if (countEl) countEl.textContent = count;
+
+  const countElTop = document.getElementById("visit-count-top");
+  if (countElTop)
+    countElTop.textContent = Number(count).toLocaleString("en-US");
+}
+
 function displayVisitorCount() {
   const visitorRef = window.firebaseRef(database, "visitors/page_views");
-  const countEl = document.getElementById("visit-count");
 
   window.firebaseOnValue(visitorRef, (snapshot) => {
-    if (countEl) countEl.textContent = snapshot.val() || 0;
+    const count = snapshot.val() || 0;
+    updateVisitCounts(count);
   });
 }
 
 incrementVisitorCount();
 displayVisitorCount();
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    const visitorRef = window.firebaseRef(database, "visitors/page_views");
+    window.firebaseGet(visitorRef).then((snapshot) => {
+      const count = snapshot.val() || 0;
+      updateVisitCounts(count);
+    });
+  }, 800);
+});

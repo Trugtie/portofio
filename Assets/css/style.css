@@ -103,35 +103,108 @@ html {
   scroll-behavior: smooth !important;
 }
 
-/* ====================== NAVBAR ====================== */
-.navbar {
+/* ====================== NAVBAR + STATUS BAR ====================== */
+
+/* Container chính của Navbar + Status */
+.navbar-with-status {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   background: var(--bg-navbar);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-light);
 }
 
-.nav-container {
-  max-width: 100%;
+/* ====================== STATUS BAR ====================== */
+.status-bar {
+  font-size: 0.85rem;
+  padding: 8px 0;
+}
+
+[data-theme="dark"] .status-bar {
+  background: rgba(42, 26, 46, 0.95);
+}
+
+.status-content {
+  width: 100%;
   margin: 0 auto;
-  padding: 10px 40px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-light);
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-weight: 500;
+}
+
+.status-left i {
+  color: #ff9edb;
+  font-size: 1.05rem;
+}
+
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.visit-count {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.visit-count:hover {
+  background: rgba(255, 158, 219, 0.15);
+  color: #ff9edb;
+}
+
+.visit-text {
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.online-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 158, 219, 0.18);
+  padding: 5px 14px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e05a9e;
+}
+
+[data-theme="dark"] .online-status {
+  background: rgba(192, 132, 252, 0.25);
+  color: #c084fc;
+}
+
+/* ====================== MAIN NAVIGATION ====================== */
+.main-nav .nav-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 14px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.logo {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  color: var(--text-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.logo img {
+  height: 34px;
+  width: auto;
 }
 
 .nav-menu {
@@ -191,6 +264,58 @@ html {
   border: none;
   color: var(--text-light);
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .status-content,
+  .main-nav .nav-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .status-content {
+    font-size: 0.78rem;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+}
+
+/* ====================== MOBILE MENU ====================== */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 30px;
+  background: var(--bg-navbar);
+  border-top: 1px solid rgba(255, 158, 219, 0.3);
+}
+
+[data-theme="dark"] .mobile-menu {
+  background: rgba(42, 26, 46, 0.98);
+}
+
+.mobile-menu .nav-link {
+  font-size: 1.25rem;
+  padding: 10px 0;
+  color: var(--text-light);
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+/* Hiển thị nút mobile và ẩn desktop menu trên mobile */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  .mobile-btn {
+    display: block;
+  }
 }
 
 /* ====================== SMOOTH SCROLL ====================== */
@@ -1241,7 +1366,7 @@ html {
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2.2fr 1fr 1fr 1.8fr;
+  grid-template-columns: 2fr 1fr 1.5fr;
   gap: 50px;
 }
 
@@ -2118,6 +2243,7 @@ input:checked + .slider:before {
   background: rgba(30, 15, 60, 0.6);
   border-color: rgba(255, 158, 219, 0.25);
 }
+
 /* ====================== RESPONSIVE ====================== */
 @media (max-width: 968px) {
   .nav-menu {
