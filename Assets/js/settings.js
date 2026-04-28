@@ -1,6 +1,6 @@
 // ====================== SETTINGS.JS - Dark Mode + Video Volume + Music Volume ======================
 
-let ytPlayer = null; // Nếu bạn vẫn giữ video background
+let ytPlayer = null;
 
 const Settings = {
   init() {
@@ -9,7 +9,7 @@ const Settings = {
 
     this.themeToggle = document.getElementById("theme-toggle");
     this.themeStatus = document.getElementById("theme-status");
-    this.volumeSlider = document.getElementById("volume-slider"); // ← Slider Âm nhạc
+    this.volumeSlider = document.getElementById("volume-slider");
     this.volumeValue = document.getElementById("volume-value");
     this.videoVolumeSlider = document.getElementById("video-volume-slider");
     this.videoVolumeValue = document.getElementById("video-volume-value");
@@ -117,12 +117,12 @@ const Settings = {
     this.themeStatus.textContent = isDark ? "Dark Mode" : "Light Mode";
 
     // Music Volume
-    const savedMusicVol = localStorage.getItem("musicVolume") || "65";
+    const savedMusicVol = localStorage.getItem("musicVolume") || "0";
     this.volumeSlider.value = savedMusicVol;
     this.volumeValue.textContent = savedMusicVol + "%";
 
     // Video Volume
-    const savedVideoVol = localStorage.getItem("videoVolume") || "0";
+    const savedVideoVol = localStorage.getItem("videoVolume") || "100";
     if (this.videoVolumeSlider) {
       this.videoVolumeSlider.value = savedVideoVol;
       this.videoVolumeValue.textContent = savedVideoVol + "%";

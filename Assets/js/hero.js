@@ -73,7 +73,7 @@ function initHeroVideo() {
       videoId: youtubeId,
       playerVars: {
         autoplay: 1,
-        mute: 1,
+        mute: 0,
         controls: 0,
         loop: 1,
         playlist: youtubeId,
@@ -86,7 +86,9 @@ function initHeroVideo() {
         onReady: (event) => {
           window.heroPlayer = event.target;
 
-          const savedVol = parseInt(localStorage.getItem("videoVolume") || "0");
+          const savedVol = parseInt(
+            localStorage.getItem("videoVolume") || "100",
+          );
 
           // Áp dụng volume + tự động mute/unmute
           event.target.setVolume(savedVol);

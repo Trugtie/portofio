@@ -7,7 +7,6 @@ const MusicPlayer = {
   init() {
     this.bindEvents();
     this.restoreSavedMusic();
-    
   },
 
   bindEvents() {
@@ -32,7 +31,7 @@ const MusicPlayer = {
   // ====================== RÚT GỌN TÊN BÀI HÁT ======================
   shortenTitle(title) {
     if (!title) return "YouTube Music";
-    const maxLength = 28; // Bạn có thể chỉnh số này (20 - 35)
+    const maxLength = 28;
 
     if (title.length <= maxLength) return title;
     return title.substring(0, maxLength).trim() + "...";
@@ -99,11 +98,10 @@ const MusicPlayer = {
           const fullTitle =
             event.target.getVideoData().title || "YouTube Music";
 
-          // Rút gọn tên trước khi hiển thị
           const shortTitle = this.shortenTitle(fullTitle);
 
           document.getElementById("music-title").textContent = shortTitle;
-          localStorage.setItem("musicTitle", fullTitle); // lưu tên đầy đủ
+          localStorage.setItem("musicTitle", fullTitle); 
 
           if (autoPlay) {
             setTimeout(() => event.target.playVideo(), 800);
