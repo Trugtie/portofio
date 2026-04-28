@@ -22,19 +22,35 @@ html {
 .background {
   height: 100vh;
   width: 100vw;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .bg-video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
   position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  border: none;
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .bg-video {
+    width: 177.78vh;
+    height: 100vh;
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .bg-video {
+    width: 100vw;
+    height: 56.25vw;
+  }
 }
 
 .overlay {
@@ -43,8 +59,9 @@ html {
   background-image: linear-gradient(to bottom, #f004be, #509fd7);
   padding: 0.4%;
   border-radius: 2%;
+  opacity: 90%;
   position: relative;
-    opacity: 90%;
+  z-index: 1;
 }
 
 .discord-container {
@@ -55,7 +72,7 @@ html {
 .banner-section {
   width: 100%;
   height: 30%;
-  background-image: url("../Image/discordpageimages/banner.gif");
+  background-image: url("../Images/discordpageimages/banner.gif");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
