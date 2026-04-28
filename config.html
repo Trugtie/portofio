@@ -257,52 +257,78 @@
             </div>
             <div id="tab-about" class="config-tab">
                 <div class="config-form">
-                    <h2>About Me Settings</h2>
+                    <h2>About Section Settings</h2>
                     <p style="opacity:0.7; margin-bottom:30px;">
-                        Thay đổi thông tin cá nhân (hobbies luôn dùng default từ client)
+                        Quản lý toàn bộ nội dung phần About & Hobby
                     </p>
 
-                    <!-- About Me Card Fields -->
+                    <!-- About Me Card -->
                     <div class="config-group">
                         <label for="about-name">Tên</label>
-                        <input type="text" id="about-name" class="config-input" placeholder="Gia Hân">
+                        <input type="text" id="about-name" class="config-input" value="Gia Hân">
                     </div>
 
                     <div class="config-group">
-                        <label for="about-title">Chức danh / Title</label>
-                        <input type="text" id="about-title" class="config-input" placeholder="Digital Artist & Gamer">
+                        <label for="about-title">Title / Chức danh</label>
+                        <input type="text" id="about-title" class="config-input" value="Digital Artist & Gamer">
                     </div>
 
                     <div class="config-group">
-                        <label for="about-profile-image">Profile Image URL (Avatar)</label>
+                        <label for="about-profile-image">Profile Image URL</label>
                         <input type="text" id="about-profile-image" class="config-input">
                     </div>
 
-                    <div class="config-group"
-                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start;">
+                    <div
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: start; margin: 25px 0;">
                         <div>
-                            <label>Nội dung Greeting + Bio + Invite + Thanks</label>
-                            <textarea id="about-bio" class="config-textarea" rows="8"
-                                placeholder="Mình yêu thích..."></textarea>
+                            <label>Greeting</label>
+                            <input type="text" id="about-greeting" class="config-input"
+                                value="❤️ Xin chào! Mình là Gia Hân — Digital Artist & Gamer nhó xíu đến từ Việt Nam ❤️">
                         </div>
                         <div id="profile-image-preview"
                             style="background:rgba(255,255,255,0.7); padding:15px; border-radius:16px; border:2px dashed var(--accent); min-height:260px; display:flex; align-items:center; justify-content:center;">
                         </div>
                     </div>
 
+                    <div class="config-group">
+                        <label>Bio (Nội dung chính)</label>
+                        <textarea id="about-bio" class="config-textarea" rows="6"></textarea>
+                    </div>
+
+                    <div class="config-group">
+                        <label>Invite Text</label>
+                        <input type="text" id="about-invite" class="config-input"
+                            value="Hãy cùng mình lan tỏa những giấc mơ màu hồng nhé! 😊">
+                    </div>
+
+                    <div class="config-group">
+                        <label>Thanks Text</label>
+                        <input type="text" id="about-thanks" class="config-input" value="Cảm ơn bạn đã ghé thăm! ❤️">
+                    </div>
+
                     <hr style="margin: 40px 0; border-color: var(--border);">
 
-                    <!-- Hobby Subtitle (chỉ subtitle, danh sách hobby cố định) -->
+                    <!-- Hobby Subtitle -->
                     <div class="config-group">
                         <label for="hobby-subtitle">Hobby Subtitle</label>
                         <input type="text" id="hobby-subtitle" class="config-input"
                             value="Những điều mình yêu thích mỗi ngày">
                     </div>
 
+                    <!-- Editable Hobbies -->
+                    <h3 style="margin: 30px 0 15px;">Danh sách Hobby</h3>
+                    <div id="hobbies-container" style="margin-bottom: 20px;">
+                        <!-- JS render -->
+                    </div>
+
+                    <button class="config-btn primary" onclick="ConfigManager.modules.about.addHobby()">
+                        + Thêm Hobby Mới
+                    </button>
+
                     <div
-                        style="margin-top: 30px; padding: 20px; background: rgba(255,158,219,0.08); border-radius: 16px; border: 1px dashed var(--accent);">
-                        <strong>📌 Lưu ý:</strong> Danh sách Hobby luôn dùng default từ <code>about.js</code>.<br>
-                        Nếu muốn thay đổi hobby, hãy sửa trực tiếp trong file <code>getDefaultHobbies()</code>.
+                        style="margin-top: 30px; padding: 15px; background: rgba(255,158,219,0.08); border-radius: 12px; font-size: 0.95rem;">
+                        <strong>💡 Tip:</strong> Icon có thể dùng emoji hoặc Font Awesome class (ví dụ: <code>🎨</code>
+                        hoặc <code>fas fa-paint-brush</code>)
                     </div>
                 </div>
             </div>

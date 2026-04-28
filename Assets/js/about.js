@@ -1,4 +1,4 @@
-// ====================== ABOUT.JS - FIXED UNDEFINED HOBBY ======================
+// ====================== ABOUT.JS - FIXED aboutConfig ERROR ======================
 
 function initAbout() {
   renderAbout();
@@ -9,38 +9,27 @@ function initAbout() {
 }
 
 function renderAbout() {
-  const aboutConfig = ConfigMain.getAbout() || {};
+  const data = ConfigMain.getAbout() || {};
 
   // ==================== ABOUT ME CARD ====================
   const aboutHTML = `
     <div class="about-me-card">
       <div class="about-left">
         <div class="profile-circle">
-          <img src="${aboutConfig.profileImage || "https://i.pinimg.com/736x/74/60/a1/7460a1cae8d0a02eb59933ddea60df29.jpg"}" 
+          <img src="${data.profileImage || "https://i.pinimg.com/736x/74/60/a1/7460a1cae8d0a02eb59933ddea60df29.jpg"}" 
                alt="Gia Hân">
         </div>
-        <h3 class="name">${aboutConfig.name || "Gia Hân"}</h3>
-        <p class="title">${aboutConfig.title || "Digital Artist & Gamer"}</p>
+        <h3 class="name">${data.name || "Gia Hân"}</h3>
+        <p class="title">${data.title || "Digital Artist & Gamer"}</p>
       </div>
 
       <div class="about-right">
         <h2 class="section-title">About Me <span class="pink-flower">🌸</span></h2>
         
-        <p class="greeting">
-          ❤️ Xin chào! Mình là ${aboutConfig.name || "Gia Hân"} — ${aboutConfig.title || "Digital Artist & Gamer"} nhó xíu đến từ Việt Nam ❤️
-        </p>
-        
-        <p class="bio">
-          ${aboutConfig.bio || `Mình yêu thích sự kết hợp hoàn hảo giữa nghệ thuật anime dễ thương và thế giới gaming đầy màu sắc. Mỗi thiết kế mình tạo ra đều mang phong cách hiện đại, trẻ trung, và một chút vibe Nhật Bản ngọt ngào như hoa anh đào bay trong gió 🌸✨`}
-        </p>
-        
-        <p class="invite">
-          ${aboutConfig.invite || "Hãy cùng mình lan tỏa những giấc mơ màu hồng nhé! 😊"}
-        </p>
-        
-        <p class="thanks">
-          ${aboutConfig.thanks || "Cảm ơn bạn đã ghé thăm! ❤️"}
-        </p>
+        <p class="greeting">${data.greeting || ""}</p>
+        <p class="bio">${data.bio || ""}</p>
+        <p class="invite">${data.invite || ""}</p>
+        <p class="thanks">${data.thanks || ""}</p>
       </div>
     </div>
   `;
@@ -48,12 +37,15 @@ function renderAbout() {
   document.getElementById("about-me-content").innerHTML = aboutHTML;
 
   // ==================== HOBBY SECTION ====================
-  const hobbies = getHobbies();
+  const hobbies =
+    Array.isArray(data.hobbies) && data.hobbies.length
+      ? data.hobbies
+      : getDefaultHobbies();
 
   let hobbyHTML = `
     <h2 class="hobby-main-title">Hobby <span class="pink-flower">🌸</span></h2>
     <p class="hobby-subtitle">
-      ${aboutConfig.hobbySubtitle || "Những điều mình yêu thích mỗi ngày"}
+      ${data.hobbySubtitle || "Những điều mình yêu thích mỗi ngày"}
     </p>
     <div class="hobby-grid">
   `;
@@ -73,21 +65,7 @@ function renderAbout() {
   document.getElementById("hobby-content").innerHTML = hobbyHTML;
 }
 
-// ====================== LẤY HOBBY (ƯU TIÊN CONFIG) ======================
-function getHobbies() {
-  const aboutConfig = ConfigMain.getAbout() || {};
-
-  console.log("About Config:", aboutConfig); // Debug: Kiểm tra cấu hình About
-
-  if (Array.isArray(aboutConfig.hobbies) && aboutConfig.hobbies.length > 0) {
-    return aboutConfig.hobbies.filter((h) => h && (h.title || h.desc));
-  }
-
-  // Fallback về default
-  return getDefaultHobbies();
-}
-
-// ====================== DEFAULT HOBBY ======================
+// ====================== DEFAULT HOBBIES ======================
 function getDefaultHobbies() {
   return [
     {
