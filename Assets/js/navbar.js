@@ -9,6 +9,7 @@ const NavbarConfig = {
     { text: "Gaming", href: "#gaming" },
     { text: "Fan Gallery", href: "#fan-gallery" },
     { text: "Gallery", href: "#gallery" },
+    { text: "Donate", href: "#donate" },
   ],
   contactText: "Settings ⚙️",
   contactHref: "#",
