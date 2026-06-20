@@ -18,13 +18,15 @@ function renderAbout() {
         <div class="profile-circle">
           <img src="${data.profileImage || "https://i.pinimg.com/736x/74/60/a1/7460a1cae8d0a02eb59933ddea60df29.jpg"}" 
                alt="Gia Hân">
+          <img src="./Assets/Images/avatarframe.gif" 
+               alt="Gia Hân Frame" class="profile-frame">
         </div>
         <h3 class="name">${data.name || "Gia Hân"}</h3>
         <p class="title">${data.title || "Digital Artist & Gamer"}</p>
       </div>
 
       <div class="about-right">
-        <h2 class="section-title">About Me <span class="pink-flower">🌸</span></h2>
+        <h2 class="section-title"><span class="pink-flower">🌸</span> About Me <span class="pink-flower">🌸</span></h2>
         
         <p class="greeting">${data.greeting || ""}</p>
         <p class="bio">${data.bio || ""}</p>
@@ -43,7 +45,7 @@ function renderAbout() {
       : getDefaultHobbies();
 
   let hobbyHTML = `
-    <h2 class="hobby-main-title">Hobby <span class="pink-flower">🌸</span></h2>
+    <h2 class="hobby-main-title"><span class="pink-flower">🌸</span> Hobby <span class="pink-flower">🌸</span></h2>
     <p class="hobby-subtitle">
       ${data.hobbySubtitle || "Những điều mình yêu thích mỗi ngày"}
     </p>
